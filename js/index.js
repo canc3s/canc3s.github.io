@@ -46,7 +46,7 @@ function init(){
   camera.position.y = 0;
   camera.lookAt(new THREE.Vector3(0,0,0));    
   renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
-  renderer.setSize(WIDTH, HEIGHT);
+  renderer.setSize(WIDTH/2, HEIGHT/2);
   renderer.shadowMapEnabled = true;
   container = document.getElementById('world');
   container.appendChild(renderer.domElement);
