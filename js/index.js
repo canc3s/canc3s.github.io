@@ -124,7 +124,7 @@ function createLights() {
 }
 
 function createFloor(){ 
-  floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(1000,500), new THREE.MeshBasicMaterial({color: 0xebe5e7}));
+  floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(500,500), new THREE.MeshBasicMaterial({color: 0xebe5e7}));
   floor.rotation.x = -Math.PI/2;
   floor.position.y = -100;
   floor.receiveShadow = true;
