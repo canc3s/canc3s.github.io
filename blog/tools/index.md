@@ -1,9 +1,8 @@
 ---
-layout: page
+layout: post
 title: Tools
 header: Collection Tools
 description: "Collection Tools."
-group: navigation
 ---
 |-----------------+------------+-----------------+----------------|
 |adasdasdasdasdasd|asdsadasdasd|asdasdasdasdasdas|  dsadasdsadas  |
