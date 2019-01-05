@@ -26,6 +26,7 @@ en: &en
   show_license: 'Show License'
   tags: 'Tags'
   theme_info: ''
+  tools: 'Tools'
   view: 'View'
 en-us:
   <<: *en
@@ -66,6 +67,7 @@ zh: &zh
   show_license: '显示许可证'
   tags: '文章标签'
   theme_info: ''
+  tools: '工具'
   view: '查阅'
 zh-cn:
   <<: *zh
