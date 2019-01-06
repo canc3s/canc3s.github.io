@@ -2,8 +2,8 @@
 layout: post
 title: "A quick demo of Simple Texture theme's code highlighting features"
 description: "A quick demo of Simple Texture theme's code highlighting features"
-categories: [mk]
-tags: [mk, jekyll]
+categories: [demo]
+tags: [demo, jekyll]
 redirect_from:
   - /2017/05/27/
 ---
