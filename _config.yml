@@ -51,9 +51,9 @@ home:
   section2: <h2>A Simple Network Security Enthusiast</h2>
   section3: <div class="social-links"><a class="ico-github btn" href="https://github.com/2357000166/" title="View on GitHub"></a></div>
 blog:
-  cc_license: http://creativecommons.org/licenses/by-sa/4.0/ # A link to CC License of your choice.
-  cc_license_image: /assets/images/theme/cc-by-sa.png # An image of your CC License. 
-  footer_content: Powere By <a href="https://github.com/2357000166/">Cances</a>.
+  cc_license: #http://creativecommons.org/licenses/by-sa/4.0/ # A link to CC License of your choice.
+  cc_license_image: #/assets/images/theme/cc-by-sa.png # An image of your CC License. 
+  footer_content: Powere By Cances.
 
 disqus:
   shortname: # e.g. yizeng
