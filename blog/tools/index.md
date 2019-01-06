@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Tools
 header: Collection Tools
 description: "Collection Tools."
