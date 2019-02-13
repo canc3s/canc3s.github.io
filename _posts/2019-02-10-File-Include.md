@@ -2,7 +2,7 @@
 layout: post
 title: "File Include"
 description: "A Summary of File Inclusion."
-categories: [fileinclude]
+categories: [fileInclude]
 tags: [summary,web]
 redirect_from:
   - /2019/02/10/
