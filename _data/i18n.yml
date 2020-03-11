@@ -66,7 +66,7 @@ zh: &zh
   show_comments: '显示评论'
   show_license: '显示许可证'
   tags: '文章标签'
-  theme_info: '<p><small>Hello boys</small></p>'
+  theme_info: '<p><small></small></p>'
   tools: '工具'
   view: '查阅'
 zh-cn:

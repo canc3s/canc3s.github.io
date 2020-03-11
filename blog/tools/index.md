@@ -4,23 +4,13 @@ title: Tools
 header: Collection Tools
 description: "Collection Tools."
 ---
-|-----------------+------------+-----------------+----------------|
-|adasdasdasdasdasd|asdsadasdasd|asdasdasdasdasdas|acadsadasdsadasa|
-|-----------------|------------|-----------------|----------------|
-|                 |            |                 |                |
-|-----------------|------------|-----------------|----------------|
-|                 |            |                 |                |
-|-----------------|------------|-----------------|----------------|
-|                 |            |                 |                |
-|-----------------|------------|-----------------|----------------|
-|                 |            |                 |                |
-|-----------------|------------|-----------------|----------------|
 
-|-----------------+------------+-----------------+----------------|
-| Default aligned |Left aligned| Center aligned  | Right aligned  |
-|-----------------|:-----------|:---------------:|---------------:|
-| First body part |Second cell | Third cell      | fourth cell    |
-| Second line     |foo         | **strong**      | baz            |
-| Third line      |quux        | baz             | bar            |
-| Footer row      |            |                 |                |
-|-----------------+------------+-----------------+----------------|
+## 在线工具
+
+[CyberChef](https://canc3s.github.io/blog/CyberChef.html)
+
+[java.lang.Runtime.exec() Payload Workarounds](https://canc3s.github.io/blog/Payload.html)
+
+
+
+
