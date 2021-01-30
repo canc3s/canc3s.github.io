@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>基于机器学习的 WebShell 检测 - cances</title>
+  
+    <meta name="keywords" content="python,机器学习,webshell">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="cances" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tags/
+                  
+                  
+                  
+                    id="blogtags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
+                  
+                  
+                  
+                    id="blogfriends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-tools fa-fw'></i>工具
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/exec
+                  
+                  
+                  
+                    id="blogtoolexec"
+                  >
+                  Runtime.exec()
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getav
+                  
+                  
+                  
+                    id="blogtoolgetav"
+                  >
+                  杀软对比
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getmskb
+                  
+                  
+                  
+                    id="blogtoolgetmskb"
+                  >
+                  win提权辅助
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+      <div id="weather"></div>
+      <script src="https://cdn.jsdelivr.net/gh/w4j1e/blog@master/js/tqa.js"></script>
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tags/
+                  
+                  
+                  
+                    id="blogtags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
+                  
+                  
+                  
+                    id="blogfriends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-tools fa-fw'></i>工具
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/exec
+                  
+                  
+                  
+                    id="blogtoolexec"
+                  >
+                  Runtime.exec()
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getav
+                  
+                  
+                  
+                    id="blogtoolgetav"
+                  >
+                  杀软对比
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getmskb
+                  
+                  
+                  
+                    id="blogtoolgetmskb"
+                  >
+                  win提权辅助
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="大佬们学慢点。。。" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <p>社区</p>
+            </a>
+          
+            <a href="/blog/tool/"
+              
+              
+              id="blogtool">
+              <p>工具</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        基于机器学习的 WebShell 检测
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2019年4月6日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="基于机器学习的 WebShell 检测" data-path="/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <blockquote>
+<p>当时为了完成毕设写的一个小东西，留作纪念。大佬们看了轻喷</p>
+</blockquote>
+<p>学习网络安安全有段时间了，对Web安全已经建立了一个系统的认识。而且自己一直对人工智能、机器学习这类东西蛮感兴趣的，而且一直在看《Hands On Machine Learning with Scikit Learn and TensorFlow》这本书，所以在做毕业设计时第一时间就想到了把机器学习和Web安全结合在一起。</p>
+<p>现在有各种各样的马，一句话，加密，混淆。普通的WebShell检测工具发挥的作用已经适应不了险恶的网络环境了，因此就必须有更加厉害的识别工具。 下面是我对机器学习识别WebShell的一些思路，希望大家可以互通有无，共同进步。</p>
+<p>首先从github上下载了很多木马文件，然后从一些开源CMS中提取出php文件。（如 CodeIgniter，Joomla，Mambo，phpmyadmin，typecho，WordPress）</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><h4 id="将文件夹中的图像，js脚本，css样式筛选出去"><a href="#将文件夹中的图像，js脚本，css样式筛选出去" class="headerlink" title="将文件夹中的图像，js脚本，css样式筛选出去"></a>将文件夹中的图像，js脚本，css样式筛选出去</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">from sklearn.base import BaseEstimator, TransformerMixin</span><br><span class="line"></span><br><span class="line">class filters(BaseEstimator, TransformerMixin):</span><br><span class="line"></span><br><span class="line">    def transform(self, path):</span><br><span class="line">        newList &#x3D; []</span><br><span class="line">        filterExt &#x3D; [&quot;jpg&quot;, &quot;jpeg&quot;, &quot;png&quot;, &quot;git&quot;, &quot;js&quot;, &quot;css&quot;, &quot;ico&quot;, &quot;jar&quot;, &quot;md&quot;, &quot;sql&quot;, &quot;json&quot;, &quot;twig&quot;]</span><br><span class="line">        for root, dirs, files in os.walk(path):</span><br><span class="line">            for completeName in files:</span><br><span class="line">                fileName, extension &#x3D; os.path.splitext(completeName)</span><br><span class="line">                if extension.lower() not in filterExt:</span><br><span class="line">                    newList.append(os.path.join(root, completeName))</span><br><span class="line">        return newList</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不能给机器太大压力</p>
+</blockquote>
+<h4 id="将文件统一编码为utf-8"><a href="#将文件统一编码为utf-8" class="headerlink" title="将文件统一编码为utf-8"></a>将文件统一编码为utf-8</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import chardet</span><br><span class="line"></span><br><span class="line">class convert_encode(BaseEstimator, TransformerMixin):</span><br><span class="line">    </span><br><span class="line">    def transform(self, lists):</span><br><span class="line">        num &#x3D; 0</span><br><span class="line">        newList &#x3D; []</span><br><span class="line">        for x in lists:</span><br><span class="line">            with open(x, &quot;rb&quot;) as f:</span><br><span class="line">                content &#x3D; f.read()</span><br><span class="line">                encode &#x3D; chardet.detect(content)[&#39;encoding&#39;]</span><br><span class="line">                if encode !&#x3D; &quot;ascii&quot;:</span><br><span class="line">                    content &#x3D; content.decode(&quot;utf-8&quot;, &quot;ignore&quot;)</span><br><span class="line">                    num +&#x3D; 1</span><br><span class="line">                else:</span><br><span class="line">                    content &#x3D; content.decode(encode, &quot;ignore&quot;)</span><br><span class="line">            filePath, fileName &#x3D; os.path.split(x)</span><br><span class="line">            bufPath &#x3D; &quot;buf&#x2F;&quot; + filePath[7:]</span><br><span class="line">            if not os.path.exists(bufPath):</span><br><span class="line">                os.makedirs(bufPath)</span><br><span class="line">            with open(bufPath + &quot;&#x2F;&quot; + fileName, &quot;w&quot;) as f:</span><br><span class="line">                f.write(content)</span><br><span class="line">            newList.append(bufPath + &quot;&#x2F;&quot; + fileName)</span><br><span class="line">        print(len(lists), &quot;个文件中&quot;, str(num), &quot;个文件被统一编码，所有处理后的文件被放到buf下&quot;)</span><br><span class="line">        return newList</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方便后面对文件的处理和特征提取</p>
+</blockquote>
+<h4 id="对列表中的文件进行去重"><a href="#对列表中的文件进行去重" class="headerlink" title="对列表中的文件进行去重"></a>对列表中的文件进行去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line">def get_md5(file_path):</span><br><span class="line">    md5_obj &#x3D; hashlib.md5()</span><br><span class="line">    with open(file_path, &#39;rb&#39;) as f:</span><br><span class="line">        md5_obj.update(f.read())</span><br><span class="line">        return md5_obj.hexdigest()</span><br><span class="line"></span><br><span class="line">class removal(BaseEstimator, TransformerMixin):</span><br><span class="line"></span><br><span class="line">    def transform(self, all_files):</span><br><span class="line">        num &#x3D; 0</span><br><span class="line">        all_md5 &#x3D; []</span><br><span class="line">        new_list &#x3D;[]</span><br><span class="line">        for files in all_files:</span><br><span class="line">            file_md5 &#x3D; get_md5(files)</span><br><span class="line">            if file_md5 not in all_md5 and (file_md5 !&#x3D; -1):</span><br><span class="line">                all_md5.append(file_md5)</span><br><span class="line">                new_list.append(files)</span><br><span class="line">            else:</span><br><span class="line">                num +&#x3D; 1</span><br><span class="line">        print(&quot;一共有&quot;, str(num), &quot;个重复文件，已从列表中去除&quot;)</span><br><span class="line">        return new_list</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重复的文本会对机器的学习造成负面影响</p>
+</blockquote>
+<h4 id="将不在列表中的文件从buf中移除"><a href="#将不在列表中的文件从buf中移除" class="headerlink" title="将不在列表中的文件从buf中移除"></a>将不在列表中的文件从buf中移除</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class clearn(BaseEstimator, TransformerMixin):</span><br><span class="line"></span><br><span class="line">    def fit(self, lists):</span><br><span class="line">        return self</span><br><span class="line">        </span><br><span class="line">    def transform(self, lists):</span><br><span class="line">        num &#x3D; 0</span><br><span class="line">        for root, dirs, files in os.walk(&quot;buf&#x2F;&quot;):</span><br><span class="line">            for i in files:</span><br><span class="line">                completeName &#x3D; os.path.join(root, i)</span><br><span class="line">                if completeName not in lists:</span><br><span class="line">                    os.remove(completeName)</span><br><span class="line">                    num +&#x3D; 1</span><br><span class="line">        print(&quot;删除了&quot;, str(num), &quot;个无用文件&quot;)        </span><br></pre></td></tr></table></figure>
+<h4 id="创建文件预处理流水线对文件进行处理"><a href="#创建文件预处理流水线对文件进行处理" class="headerlink" title="创建文件预处理流水线对文件进行处理"></a>创建文件预处理流水线对文件进行处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.pipeline import Pipeline</span><br><span class="line"></span><br><span class="line">file_transform &#x3D; Pipeline([</span><br><span class="line">    (&#39;filters&#39;, filters()),</span><br><span class="line">    (&#39;convert_encode&#39;, convert_encode()),</span><br><span class="line">    (&#39;removal&#39;, removal()),</span><br><span class="line">    (&#39;clearn&#39;, clearn())</span><br><span class="line">])</span><br><span class="line">path &#x3D; &quot;sample&#x2F;&quot;</span><br><span class="line">file_transform.transform(path)</span><br><span class="line">12732 个文件中 2811 个文件被统一编码，所有处理后的文件被放到buf下</span><br><span class="line">一共有 4885 个重复文件，已从列表中去除</span><br><span class="line">删除了 4885 个无用文件</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>损失了<code>2/3</code>的木马文件</p>
+</blockquote>
+<h3 id="创建特征"><a href="#创建特征" class="headerlink" title="创建特征"></a>创建特征</h3><p>主要调用了<a target="_blank" rel="noopener" href="https://github.com/Neohapsis/NeoPI">NeoPI</a>的接口，它使用各种统计方法来检测文本/脚本文件中的混淆和加密内容。</p>
+<h4 id="统计文章长度"><a href="#统计文章长度" class="headerlink" title="统计文章长度"></a>统计文章长度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">class getLen:</span><br><span class="line"></span><br><span class="line">    def calculate(self,data,filename):</span><br><span class="line">        if not data:</span><br><span class="line">            return 0</span><br><span class="line">        length &#x3D; 0</span><br><span class="line">        for i in data:</span><br><span class="line">            length &#x3D; length + len(i)</span><br><span class="line">        return length</span><br></pre></td></tr></table></figure>
+<p>正常网站的文件的文章篇幅不会太大也不会太小，但WebShell有的很长，有的很短，可以有效地从文件中分离出大马和小马</p>
+<h4 id="计算文章的熵值"><a href="#计算文章的熵值" class="headerlink" title="计算文章的熵值"></a>计算文章的熵值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import math</span><br><span class="line"></span><br><span class="line">class Entropy:</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.results &#x3D; []</span><br><span class="line">        </span><br><span class="line">    def calculate(self,data,filename):</span><br><span class="line">        if not data:</span><br><span class="line">            return 0</span><br><span class="line">        entropy &#x3D; 0</span><br><span class="line">        self.stripped_data &#x3D;data.replace(&#39; &#39;, &#39;&#39;)</span><br><span class="line">        for x in range(256):</span><br><span class="line">            p_x &#x3D; float(self.stripped_data.count(chr(x)))&#x2F;len(self.stripped_data)</span><br><span class="line">            if p_x &gt; 0:</span><br><span class="line">                entropy +&#x3D; - p_x * math.log(p_x, 2)</span><br><span class="line">        self.results.append(&#123;&quot;filename&quot;:filename, &quot;value&quot;:entropy&#125;)</span><br><span class="line">        return entropy  </span><br></pre></td></tr></table></figure>
+<p>因为单词的组成都是有规律的，所以正常的文章熵值不会太大也不会太小，而WebShell的熵值会因为加密而产生浮动，可以把正常文件和加密马分离出来</p>
+<h4 id="统计文章最长的单词"><a href="#统计文章最长的单词" class="headerlink" title="统计文章最长的单词"></a>统计文章最长的单词</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">class LongestWord:</span><br><span class="line">    </span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.results &#x3D; []</span><br><span class="line"></span><br><span class="line">    def calculate(self,data,filename):</span><br><span class="line">        if not data:</span><br><span class="line">            return &quot;&quot;, 0</span><br><span class="line">        longest &#x3D; 0</span><br><span class="line">        longest_word &#x3D; &quot;&quot;</span><br><span class="line">        words &#x3D; re.split(&quot;[\s,\n,\r]&quot;, data)</span><br><span class="line">        if words:</span><br><span class="line">            for word in words:</span><br><span class="line">                length &#x3D; len(word)</span><br><span class="line">                if length &gt; longest:</span><br><span class="line">                    longest &#x3D; length</span><br><span class="line">                    longest_word &#x3D; word</span><br><span class="line">        self.results.append(&#123;&quot;filename&quot;:filename, &quot;value&quot;:longest&#125;)</span><br><span class="line">        return longest</span><br></pre></td></tr></table></figure>
+<p>正常的文章，最长单词的长度不会超过20吧，但是WebShell就不一定了，由于加密，或者存在提权的 payload 最长单词会变得很长</p>
+<h4 id="统计文章中恶意词汇的数量"><a href="#统计文章中恶意词汇的数量" class="headerlink" title="统计文章中恶意词汇的数量"></a>统计文章中恶意词汇的数量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class SignatureNasty:</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.results &#x3D; []</span><br><span class="line"></span><br><span class="line">    def calculate(self, data, filename):</span><br><span class="line">        if not data:</span><br><span class="line">            return &quot;&quot;, 0</span><br><span class="line">        valid_regex &#x3D; re.compile(&#39;(eval\(|file_put_contents|base64_decode|exec\(|passthru|popen|proc_open|pcntl|assert\(|system\(|shell)&#39;, re.I)</span><br><span class="line">        matches &#x3D; re.findall(valid_regex, data)</span><br><span class="line">        self.results.append(&#123;&quot;filename&quot;:filename, &quot;value&quot;:len(matches)&#125;)</span><br><span class="line">        return len(matches)</span><br></pre></td></tr></table></figure>
+<p>一般的文件不会存在太多的文件操作，命令执行函数，但WebShell会</p>
+<h4 id="计算文章的可压缩比例"><a href="#计算文章的可压缩比例" class="headerlink" title="计算文章的可压缩比例"></a>计算文章的可压缩比例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import zlib</span><br><span class="line"></span><br><span class="line">class Compression:</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.results &#x3D; []</span><br><span class="line"></span><br><span class="line">    def calculate(self, data, filename):</span><br><span class="line">        if not data:</span><br><span class="line">            return &quot;&quot;, 0        </span><br><span class="line">        compressed &#x3D; zlib.compress(data.encode(&#39;utf-8&#39;))</span><br><span class="line">        ratio &#x3D; float(len(compressed)) &#x2F; float(len(data))</span><br><span class="line">        self.results.append(&#123;&quot;filename&quot;:filename, &quot;value&quot;:ratio&#125;)</span><br><span class="line">        return ratio</span><br></pre></td></tr></table></figure>
+<p>有些木马会把自己的内容压缩或者编码，加密，这些都会一定程度上的影响文章的可压缩比例，所以这个特征也有一定的参考</p>
+<h4 id="将特征提取过程打包"><a href="#将特征提取过程打包" class="headerlink" title="将特征提取过程打包"></a>将特征提取过程打包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def getFeatures(List):</span><br><span class="line">    Length &#x3D; []</span><br><span class="line">    Entropy &#x3D; []</span><br><span class="line">    LongestWord &#x3D; []</span><br><span class="line">    SignatureNasty &#x3D; []</span><br><span class="line">    Compression &#x3D; []</span><br><span class="line">    dicts &#x3D; &#123;&quot;getLen&quot;:Length, &quot;Entropy&quot;:Entropy, &quot;LongestWord&quot;:LongestWord, &quot;SignatureNasty&quot;:SignatureNasty, &quot;Compression&quot;:Compression&#125;</span><br><span class="line">    Features &#x3D; [&quot;getLen&quot;, &quot;Entropy&quot;, &quot;LongestWord&quot;, &quot;SignatureNasty&quot;, &quot;Compression&quot;]</span><br><span class="line">    for i in List:</span><br><span class="line">        with open(i, &quot;r&quot;) as f:</span><br><span class="line">            data &#x3D; f.read()</span><br><span class="line">        for j in range(len(Features)):</span><br><span class="line">            value &#x3D; tests[j].calculate(data, i)</span><br><span class="line">            dicts[Features[j]].append(value)</span><br><span class="line">    return Length, Entropy, LongestWord, SignatureNasty, Compression</span><br></pre></td></tr></table></figure>
+<h3 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h3><h4 id="将数据从文件夹读取出来"><a href="#将数据从文件夹读取出来" class="headerlink" title="将数据从文件夹读取出来"></a>将数据从文件夹读取出来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def listFile(path):</span><br><span class="line">    fileList &#x3D; []</span><br><span class="line">    for root, dirs, files in os.walk(path):</span><br><span class="line">        for i in files:</span><br><span class="line">            completeName &#x3D; os.path.join(root, i)</span><br><span class="line">            fileList.append(completeName)</span><br><span class="line">    return fileList</span><br><span class="line">shellPath &#x3D; &quot;buf&#x2F;shell&quot;</span><br><span class="line">commonPath &#x3D; &quot;buf&#x2F;common&quot;</span><br><span class="line">shell &#x3D; listFile(shellPath)</span><br><span class="line">common &#x3D; listFile(commonPath)</span><br></pre></td></tr></table></figure>
+<h4 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shellLabel &#x3D; [1 for i in range(0, len(shell))]</span><br><span class="line">commonLabel &#x3D; [0 for i in range(0, len(common))]</span><br><span class="line">files &#x3D; shell + common</span><br><span class="line">labels &#x3D; shellLabel + commonLabel</span><br></pre></td></tr></table></figure>
+<h4 id="计算各个文件的特征值"><a href="#计算各个文件的特征值" class="headerlink" title="计算各个文件的特征值"></a>计算各个文件的特征值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tests &#x3D; []</span><br><span class="line">tests.append(getLen())</span><br><span class="line">tests.append(Entropy())</span><br><span class="line">tests.append(LongestWord())</span><br><span class="line">tests.append(SignatureNasty())</span><br><span class="line">tests.append(Compression())</span><br><span class="line"></span><br><span class="line">Length, Entropy, LongestWord, SignatureNasty, Compression &#x3D; getFeatures(files)</span><br></pre></td></tr></table></figure>
+<h4 id="将特征集合在一起，生成一个DataFrame"><a href="#将特征集合在一起，生成一个DataFrame" class="headerlink" title="将特征集合在一起，生成一个DataFrame"></a>将特征集合在一起，生成一个DataFrame</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">dataDict &#x3D; &#123;&quot;label&quot;:labels, &quot;file&quot;:files, &quot;Length&quot;:Length, &quot;Entropy&quot;:Entropy, &quot;LongestWord&quot;:LongestWord,</span><br><span class="line">            &quot;SignatureNasty&quot;:SignatureNasty, &quot;Compression&quot;:Compression&#125;</span><br><span class="line">dataSet &#x3D; pd.DataFrame(dataDict, columns&#x3D;[&#39;label&#39;, &#39;file&#39;, &quot;Length&quot;, &quot;Entropy&quot;, &quot;LongestWord&quot;, &quot;SignatureNasty&quot;, &quot;Compression&quot;])</span><br></pre></td></tr></table></figure>
+<h4 id="查看前五条数据"><a href="#查看前五条数据" class="headerlink" title="查看前五条数据"></a>查看前五条数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataSet.head()</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>label</th>
+<th>file</th>
+<th>Length</th>
+<th>Entropy</th>
+<th>LongestWord</th>
+<th>SignatureNasty</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>buf/shell/small.php</td>
+<td>15410</td>
+<td>5.548091</td>
+<td>129</td>
+<td>4</td>
+<td>0.254315</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>buf/shell/spy.php</td>
+<td>73950</td>
+<td>5.505197</td>
+<td>153</td>
+<td>30</td>
+<td>0.284043</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>buf/shell/b374k-mini-shell-php.php.php</td>
+<td>14427</td>
+<td>6.036039</td>
+<td>79</td>
+<td>2</td>
+<td>0.763083</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>buf/shell/b374k-2.4.php</td>
+<td>101330</td>
+<td>5.772806</td>
+<td>5847</td>
+<td>55</td>
+<td>0.326221</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>buf/shell/Ani-Shell.php</td>
+<td>87016</td>
+<td>6.008172</td>
+<td>3147</td>
+<td>53</td>
+<td>0.212260</td>
+</tr>
+</tbody></table>
+<h4 id="查看数据的整体状况"><a href="#查看数据的整体状况" class="headerlink" title="查看数据的整体状况"></a>查看数据的整体状况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dataSet.info()</span><br><span class="line">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span><br><span class="line">RangeIndex: 7847 entries, 0 to 7846</span><br><span class="line">Data columns (total 7 columns):</span><br><span class="line">label             7847 non-null int64</span><br><span class="line">file              7847 non-null object</span><br><span class="line">Length            7847 non-null int64</span><br><span class="line">Entropy           7847 non-null float64</span><br><span class="line">LongestWord       7847 non-null int64</span><br><span class="line">SignatureNasty    7847 non-null int64</span><br><span class="line">Compression       7847 non-null float64</span><br><span class="line">dtypes: float64(2), int64(4), object(1)</span><br><span class="line">memory usage: 429.2+ KB</span><br></pre></td></tr></table></figure>
+<h4 id="查看数据中两种数据所占比例"><a href="#查看数据中两种数据所占比例" class="headerlink" title="查看数据中两种数据所占比例"></a>查看数据中两种数据所占比例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataSet[&quot;label&quot;].value_counts() &#x2F; len(dataSet)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0    0.747037</span><br><span class="line">1    0.252963</span><br><span class="line">Name: label, dtype: float64</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="有三个特征格式不正确，进行转换"><a href="#有三个特征格式不正确，进行转换" class="headerlink" title="有三个特征格式不正确，进行转换"></a>有三个特征格式不正确，进行转换</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def traInt(x):</span><br><span class="line">    try:</span><br><span class="line">        r &#x3D; np.int64(x)</span><br><span class="line">        return r</span><br><span class="line">    except:</span><br><span class="line">        return 0</span><br><span class="line">    </span><br><span class="line">def tranFlo(x):</span><br><span class="line">    try:</span><br><span class="line">        r &#x3D; np.float64(x)</span><br><span class="line">        return r</span><br><span class="line">    except:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">dataSet[&quot;LongestWord&quot;] &#x3D; dataSet[&quot;LongestWord&quot;].map(lambda x:traInt(x))</span><br><span class="line">dataSet[&quot;SignatureNasty&quot;] &#x3D; dataSet[&quot;SignatureNasty&quot;].map(lambda x:traInt(x))</span><br><span class="line">dataSet[&quot;Compression&quot;] &#x3D; dataSet[&quot;Compression&quot;].map(lambda x:tranFlo(x))</span><br><span class="line">dataSet.head()</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>label</th>
+<th>file</th>
+<th>Length</th>
+<th>Entropy</th>
+<th>LongestWord</th>
+<th>SignatureNasty</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>buf/shell/small.php</td>
+<td>15410</td>
+<td>5.548091</td>
+<td>129</td>
+<td>4</td>
+<td>0.254315</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>buf/shell/spy.php</td>
+<td>73950</td>
+<td>5.505197</td>
+<td>153</td>
+<td>30</td>
+<td>0.284043</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>buf/shell/b374k-mini-shell-php.php.php</td>
+<td>14427</td>
+<td>6.036039</td>
+<td>79</td>
+<td>2</td>
+<td>0.763083</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>buf/shell/b374k-2.4.php</td>
+<td>101330</td>
+<td>5.772806</td>
+<td>5847</td>
+<td>55</td>
+<td>0.326221</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>buf/shell/Ani-Shell.php</td>
+<td>87016</td>
+<td>6.008172</td>
+<td>3147</td>
+<td>53</td>
+<td>0.212260</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dataSet.info()</span><br><span class="line">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span><br><span class="line">RangeIndex: 7847 entries, 0 to 7846</span><br><span class="line">Data columns (total 7 columns):</span><br><span class="line">label             7847 non-null int64</span><br><span class="line">file              7847 non-null object</span><br><span class="line">Length            7847 non-null int64</span><br><span class="line">Entropy           7847 non-null float64</span><br><span class="line">LongestWord       7847 non-null int64</span><br><span class="line">SignatureNasty    7847 non-null int64</span><br><span class="line">Compression       7847 non-null float64</span><br><span class="line">dtypes: float64(2), int64(4), object(1)</span><br><span class="line">memory usage: 429.2+ KB</span><br></pre></td></tr></table></figure>
+<h3 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h3><h4 id="五个特征对于两类文件的平均值"><a href="#五个特征对于两类文件的平均值" class="headerlink" title="五个特征对于两类文件的平均值"></a>五个特征对于两类文件的平均值</h4><p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/0658d3d97b758ac770f4ac5a760f71629d7bcd.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/0658d3d97b758ac770f4ac5a760f71629d7bcd.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<p>红色代表WebShell，绿色代表正常文件，下面雷同</p>
+<h4 id="导入画图的库"><a href="#导入画图的库" class="headerlink" title="导入画图的库"></a>导入画图的库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import seaborn as sns</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">plt.style.use(&#39;seaborn&#39;)</span><br><span class="line">sns.set_context(&quot;poster&quot;)</span><br><span class="line">sns.set(font_scale&#x3D;2)</span><br><span class="line">pd.set_option(&#39;display.max_columns&#39;, 500)</span><br></pre></td></tr></table></figure>
+<h4 id="将各个特征以图形化的界面展现出来"><a href="#将各个特征以图形化的界面展现出来" class="headerlink" title="将各个特征以图形化的界面展现出来"></a>将各个特征以图形化的界面展现出来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(dataSet.Length[dataSet.label &#x3D;&#x3D; 1].values, color&#x3D;&quot;r&quot;, shade&#x3D;True)</span><br><span class="line">sns.kdeplot(dataSet.Length[dataSet.label &#x3D;&#x3D; 0].values, color&#x3D;&quot;b&quot;, shade&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb15c8a99e8&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/fc36f4af4d5cedc063289a08910ab80f9655d2.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/fc36f4af4d5cedc063289a08910ab80f9655d2.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(dataSet.Entropy[dataSet.label &#x3D;&#x3D; 1].values, color&#x3D;&quot;r&quot;, shade&#x3D;True)</span><br><span class="line">sns.kdeplot(dataSet.Entropy[dataSet.label &#x3D;&#x3D; 0].values, color&#x3D;&quot;b&quot;, shade&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb15c842588&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/23fc63ded772b3f807c01f9def01dcbeb16580.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/23fc63ded772b3f807c01f9def01dcbeb16580.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(dataSet.LongestWord[dataSet.label &#x3D;&#x3D; 1].values, color&#x3D;&quot;r&quot;, shade&#x3D;True)</span><br><span class="line">sns.kdeplot(dataSet.LongestWord[dataSet.label &#x3D;&#x3D; 0].values, color&#x3D;&quot;b&quot;, shade&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb15c82eb38&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/cfb9cbadf09ad92055450588b85ad2de56c955.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/cfb9cbadf09ad92055450588b85ad2de56c955.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(dataSet.SignatureNasty[dataSet.label &#x3D;&#x3D; 1].values, color&#x3D;&quot;r&quot;, shade&#x3D;True)</span><br><span class="line">sns.kdeplot(dataSet.SignatureNasty[dataSet.label &#x3D;&#x3D; 0].values, color&#x3D;&quot;b&quot;, shade&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb15a774dd8&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d1eda1ee3b6eec1aeb9b6958fe2c510bb6cd15.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d1eda1ee3b6eec1aeb9b6958fe2c510bb6cd15.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(dataSet.Compression[dataSet.label &#x3D;&#x3D; 1].values, color&#x3D;&quot;r&quot;, shade&#x3D;True)</span><br><span class="line">sns.kdeplot(dataSet.Compression[dataSet.label &#x3D;&#x3D; 0].values, color&#x3D;&quot;b&quot;, shade&#x3D;True)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb15a6caf60&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b10d536369c2295f6a546a8a72b6f5861ece51.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b10d536369c2295f6a546a8a72b6f5861ece51.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from mpl_toolkits.mplot3d import Axes3D</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure(figsize&#x3D;(7,5))</span><br><span class="line">ax &#x3D; Axes3D(fig)</span><br><span class="line">ax.scatter(dataSet.LongestWord[dataSet.label &#x3D;&#x3D; 1].values, dataSet.Compression[dataSet.label &#x3D;&#x3D; 1],</span><br><span class="line">           dataSet.Length[dataSet.label &#x3D;&#x3D; 1].values,c&#x3D;&#39;r&#39;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x7fb15a618908&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/f33c3f8cfaf9dbe35ea4a2404ded2723bd278b.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/f33c3f8cfaf9dbe35ea4a2404ded2723bd278b.png" srcset="data:image/png;base64,666" alt="png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig &#x3D; plt.figure(figsize&#x3D;(7,5))</span><br><span class="line">ax &#x3D; Axes3D(fig)</span><br><span class="line">ax.scatter(dataSet.LongestWord[dataSet.label &#x3D;&#x3D; 0].values, dataSet.Compression[dataSet.label &#x3D;&#x3D; 0],</span><br><span class="line">           dataSet.Length[dataSet.label &#x3D;&#x3D; 0].values,c&#x3D;&#39;y&#39;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mpl_toolkits.mplot3d.art3d.Path3DCollection at 0x7fb158c9beb8&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ae6b0daad2c6975674f02dcb816dce34bb3cec.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ae6b0daad2c6975674f02dcb816dce34bb3cec.png" srcset="data:image/png;base64,666" alt="png"></p>
+<p>从图片中可以看出大部分的WebShell还是可以被区别出来的</p>
+<h4 id="计算出各个参数之间的皮尔逊系数"><a href="#计算出各个参数之间的皮尔逊系数" class="headerlink" title="计算出各个参数之间的皮尔逊系数"></a>计算出各个参数之间的皮尔逊系数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">correlations &#x3D; dataSet.corr()</span><br><span class="line">correlations[&quot;label&quot;].sort_values(ascending&#x3D;False)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">label             1.000000</span><br><span class="line">SignatureNasty    0.391205</span><br><span class="line">Length            0.330383</span><br><span class="line">Compression       0.307060</span><br><span class="line">Entropy           0.251075</span><br><span class="line">LongestWord       0.219952</span><br><span class="line">Name: label, dtype: float64</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="按shell占比例将数据均匀分开"><a href="#按shell占比例将数据均匀分开" class="headerlink" title="按shell占比例将数据均匀分开"></a>按shell占比例将数据均匀分开</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.model_selection import StratifiedShuffleSplit</span><br><span class="line"></span><br><span class="line">split &#x3D; StratifiedShuffleSplit(n_splits&#x3D;1, test_size&#x3D;0.2, random_state&#x3D;36)</span><br><span class="line">for train_index, test_index in split.split(dataSet, dataSet[&quot;label&quot;]):</span><br><span class="line">    train_set &#x3D; dataSet.loc[train_index]</span><br><span class="line">    test_set &#x3D; dataSet.loc[test_index]</span><br><span class="line">train_set.head(10)</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>label</th>
+<th>file</th>
+<th>Length</th>
+<th>Entropy</th>
+<th>LongestWord</th>
+<th>SignatureNasty</th>
+<th>Compression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4313</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/tw…</td>
+<td>4038</td>
+<td>5.136905</td>
+<td>42</td>
+<td>0</td>
+<td>0.309807</td>
+</tr>
+<tr>
+<td>2509</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/P2…</td>
+<td>1345</td>
+<td>5.223217</td>
+<td>54</td>
+<td>0</td>
+<td>0.259480</td>
+</tr>
+<tr>
+<td>7767</td>
+<td>0</td>
+<td>buf/common/phpmyadmin-master/RelationCleanup.php</td>
+<td>15364</td>
+<td>5.352547</td>
+<td>51</td>
+<td>0</td>
+<td>0.073809</td>
+</tr>
+<tr>
+<td>5180</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/de…</td>
+<td>1333</td>
+<td>5.224251</td>
+<td>50</td>
+<td>0</td>
+<td>0.439610</td>
+</tr>
+<tr>
+<td>4260</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/pd…</td>
+<td>966</td>
+<td>5.280909</td>
+<td>40</td>
+<td>0</td>
+<td>0.548654</td>
+</tr>
+<tr>
+<td>4419</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/jq…</td>
+<td>3753</td>
+<td>5.312287</td>
+<td>47</td>
+<td>0</td>
+<td>0.356515</td>
+</tr>
+<tr>
+<td>3485</td>
+<td>0</td>
+<td>buf/common/Joomla_3.9.4-Stable-Full_Package/in…</td>
+<td>6869</td>
+<td>5.321246</td>
+<td>54</td>
+<td>0</td>
+<td>0.324793</td>
+</tr>
+<tr>
+<td>6366</td>
+<td>0</td>
+<td>buf/common/WordPress-master/content-page (3).php</td>
+<td>884</td>
+<td>5.089887</td>
+<td>32</td>
+<td>0</td>
+<td>0.488688</td>
+</tr>
+<tr>
+<td>1894</td>
+<td>1</td>
+<td>buf/shell/a/php/f3b9d1c8e18467eecb31e0bb2c39c9…</td>
+<td>1449</td>
+<td>5.194428</td>
+<td>122</td>
+<td>0</td>
+<td>0.641822</td>
+</tr>
+<tr>
+<td>72</td>
+<td>1</td>
+<td>buf/shell/bypass-waf-2015-06-16-03.php</td>
+<td>460</td>
+<td>5.464458</td>
+<td>86</td>
+<td>0</td>
+<td>0.645652</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">train_set.info()</span><br><span class="line">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span><br><span class="line">Int64Index: 6277 entries, 4313 to 6235</span><br><span class="line">Data columns (total 7 columns):</span><br><span class="line">label             6277 non-null int64</span><br><span class="line">file              6277 non-null object</span><br><span class="line">Length            6277 non-null int64</span><br><span class="line">Entropy           6277 non-null float64</span><br><span class="line">LongestWord       6277 non-null int64</span><br><span class="line">SignatureNasty    6277 non-null int64</span><br><span class="line">Compression       6277 non-null float64</span><br><span class="line">dtypes: float64(2), int64(4), object(1)</span><br><span class="line">memory usage: 392.3+ KB</span><br></pre></td></tr></table></figure>
+<h4 id="将X，Y分离"><a href="#将X，Y分离" class="headerlink" title="将X，Y分离"></a>将X，Y分离</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x_train &#x3D; train_set.drop(&quot;label&quot;, axis&#x3D;1).drop(&quot;file&quot;, axis&#x3D;1)</span><br><span class="line">y_train &#x3D; train_set.label</span><br><span class="line">x_test &#x3D; test_set.drop(&quot;label&quot;, axis&#x3D;1).drop(&quot;file&quot;, axis&#x3D;1)</span><br><span class="line">y_test &#x3D; test_set.label</span><br></pre></td></tr></table></figure>
+<h4 id="载入性能考核函数，并对结果进行评定"><a href="#载入性能考核函数，并对结果进行评定" class="headerlink" title="载入性能考核函数，并对结果进行评定"></a>载入性能考核函数，并对结果进行评定</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import precision_score, recall_score, f1_score</span><br><span class="line"></span><br><span class="line">def score(name, y_test, y_pred):</span><br><span class="line">    accu_score &#x3D; precision_score(y_test, y_pred)</span><br><span class="line">    reca_score &#x3D; recall_score(y_test, y_pred)</span><br><span class="line">    fin_score &#x3D; f1_score(y_test, y_pred)</span><br><span class="line">    print(&quot;&#123;&#125;:\n精度：&#123;&#125;\n召回率：&#123;&#125;\n综合得分：&#123;&#125;&quot;.format(name, accu_score, reca_score, fin_score))</span><br></pre></td></tr></table></figure>
+<h3 id="分类算法介绍"><a href="#分类算法介绍" class="headerlink" title="分类算法介绍"></a>分类算法介绍</h3><h4 id="最有影响力的十大数据挖掘算法中包含的分类算法"><a href="#最有影响力的十大数据挖掘算法中包含的分类算法" class="headerlink" title="最有影响力的十大数据挖掘算法中包含的分类算法"></a>最有影响力的十大数据挖掘算法中包含的分类算法</h4><p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1c4ad6511de1caa5487dac031ab5793a83e9df.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1c4ad6511de1caa5487dac031ab5793a83e9df.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="k近邻算法"><a href="#k近邻算法" class="headerlink" title="k近邻算法"></a>k近邻算法</h4><p>K最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的思路是：如果一个样本在特征空间中的k个最相似(即特征空间中最邻近)的样本中的大多数属于某一个类别，则该样本也属于这个类别。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ae9376a87df7891ed4cb0cf6cbfe1df6a9885c.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ae9376a87df7891ed4cb0cf6cbfe1df6a9885c.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="SVM法"><a href="#SVM法" class="headerlink" title="SVM法"></a>SVM法</h4><p>支持向量机(support vector machine)是一种分类算法，通过寻求结构化风险最小来提高学习机泛化能力，实现经验风险和置信范围的最小化，从而达到在统计样本量较少的情况下，亦能获得良好统计规律的目的。通俗来讲，它是一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，即支持向量机的学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/a586832db90542a3019dbcb9dd825aa8830253.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/a586832db90542a3019dbcb9dd825aa8830253.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h4><p>决策树(Decision Tree）是在已知各种情况发生概率的基础上，通过构成决策树来求取净现值的期望值大于等于零的概率，评价项目风险，判断其可行性的决策分析方法，是直观运用概率分析的一种图解法。是一种十分常用的监管学习式分类方法。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/dcc96ecae52d4c8e8a97cb5ef09ad19295714f.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/dcc96ecae52d4c8e8a97cb5ef09ad19295714f.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h4><p>朴素贝叶斯方法是一种监督学习算法，它基于贝叶斯定理给定类变量值的每对特征之间的条件独立性的“简单”假设。在给定类变量$y$和从属特征向量$x*{1}$到$x*{n}$，贝叶斯定理表明了以下关系：</p>
+<p>$P(y \mid x_1, \dots, x_n) = \frac{P(y) P(x_1, \dots x_n \mid y)}                                 {P(x_1, \dots, x_n)}$                                  使用简单的条件独立假设</p>
+<p>$P(x_i | y, x_1, \dots, x*{i-1}, x*{i+1}, \dots, x_n) = P(x_i | y),$</p>
+<p>对于所有$i$，这种关系被简化为</p>
+<p>$P(y \mid x_1, \dots, x_n) = \frac{P(y) \prod_{i=1}^{n} P(x_i \mid y)}                                 {P(x_1, \dots, x_n)}$                                 由于$P(x_1, \dots, x_n)$在输入时是常数，我们可以使用以下分类规则：</p>
+<p>$\begin{align}\begin{aligned}P(y \mid x_1, \dots, x_n) \propto P(y) \prod*{i=1}^{n} P(x_i \mid y)\Downarrow\hat{y} = \arg\max_y P(y) \prod*{i=1}^{n} P(x_i \mid y),\end{aligned}\end{align}$</p>
+<p>我们可以使用最大后验（MAP）估计来估计$$P(y)和$P(x_i \mid y)$; 前者是训练集中$y$类的相对频率。</p>
+<h4 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h4><p>神经网络由“神经元”构成，一个“神经元”是一个运算单元f，该运算单元在神经网络中称作激活函数，激活函数通常设定为sigmoid函数（也可以设为其他函数），它可以输入一组加权系数的量，对这个量进行映射，如果这个映射结果达到或者超过了某个阈值，输出一个量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/62aaef99f05ce2ffd71b53d9520a63a3b4dfba.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/62aaef99f05ce2ffd71b53d9520a63a3b4dfba.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h4><p>逻辑回归的模型是一个非线性模型，sigmoid函数，又称逻辑回归函数。但它其实是基于线性回归模型，因为除去sigmoid映射函数关系，其他的步骤，算法都是线性回归的。所以可以说，逻辑回归，都是以线性回归为理论支持的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b52d16402fa013a342e56dc76c2a3da1835528.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b52d16402fa013a342e56dc76c2a3da1835528.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h4><p>随机森林是一个包含多个决策树的分类器， 并且其输出的类别是由个别树输出的类别的众数而定。随机森林是集成学习思想下的产物，将许多棵决策树整合成森林，并合起来用来预测最终结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2ebb369a9842386bda8e1906ebd6d159d290f4.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2ebb369a9842386bda8e1906ebd6d159d290f4.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h4 id="adaboost"><a href="#adaboost" class="headerlink" title="adaboost"></a>adaboost</h4><p>Adaboost是一种迭代算法，其核心思想是针对同一个训练集训练不同的分类器(弱分类器)，然后把这些弱分类器集合起来，构成一个更强的最终分类器（强分类器）。其算法本身是通过改变数据分布来实现的，它根据每次训练集之中每个样本的分类是否正确，以及上次的总体分类的准确率，来确定每个样本的权值。将修改过权值的新数据集送给下层分类器进行训练，最后将每次训练得到的分类器最后融合起来，作为最后的决策分类器。使用adaboost分类器可以排除一些不必要的训练数据特征，并放在关键的训练数据上面。</p>
+<h4 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h4><p>该算法思想就是不断地添加树，不断地进行特征分裂来生长一棵树，每次添加一个树，其实是学习一个新函数，去拟合上次预测的残差。当我们训练完成得到k棵树，我们要预测一个样本的分数，其实就是根据这个样本的特征，在每棵树中会落到对应的一个叶子节点，每个叶子节点就对应一个分数，最后只需要将每棵树对应的分数加起来就是该样本的预测值。</p>
+<h4 id="gbdt-lr"><a href="#gbdt-lr" class="headerlink" title="gbdt+lr"></a>gbdt+lr</h4><p>GBDT算法的图示部分形如一棵倒过来的树，其根部即代表训练GBDT算法的原始数据集，经过树算法对原始数据的切分，可得到代表不同新特征的叶子节点。再将GBDT所得的叶子节点输入LR算法，经过线性分析和sigmoid映射，即可得到模型分类结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6b7733f605cce271cb308b3beebeb231b5fc93.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6b7733f605cce271cb308b3beebeb231b5fc93.png" srcset="data:image/png;base64,666" alt="image.png"></p>
+<h3 id="分类算法尝试"><a href="#分类算法尝试" class="headerlink" title="分类算法尝试"></a>分类算法尝试</h3><h4 id="K近邻法"><a href="#K近邻法" class="headerlink" title="K近邻法"></a>K近邻法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import neighbors</span><br><span class="line"></span><br><span class="line">knc &#x3D; neighbors.KNeighborsClassifier()</span><br><span class="line">K_model &#x3D;knc.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; K_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;k近邻&quot;, y_test, y_pred)</span><br><span class="line">k近邻:</span><br><span class="line">精度：0.8494983277591973</span><br><span class="line">召回率：0.6397984886649875</span><br><span class="line">综合得分：0.7298850574712645</span><br></pre></td></tr></table></figure>
+<h4 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import svm</span><br><span class="line"></span><br><span class="line">svc &#x3D; svm.SVC()</span><br><span class="line">S_model &#x3D;svc.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; S_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;支持向量机&quot;, y_test, y_pred)</span><br><span class="line">&#x2F;home&#x2F;cances&#x2F;.local&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;sklearn&#x2F;svm&#x2F;base.py:196: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.</span><br><span class="line">  &quot;avoid this warning.&quot;, FutureWarning)</span><br><span class="line">支持向量机:</span><br><span class="line">精度：0.9824561403508771</span><br><span class="line">召回率：0.28211586901763225</span><br><span class="line">综合得分：0.4383561643835617</span><br></pre></td></tr></table></figure>
+<h4 id="决策树-1"><a href="#决策树-1" class="headerlink" title="决策树"></a>决策树</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import tree</span><br><span class="line"></span><br><span class="line">dtc &#x3D; tree.DecisionTreeClassifier()</span><br><span class="line">D_model &#x3D; dtc.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; D_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;决策树&quot;, y_test, y_pred)</span><br><span class="line">决策树:</span><br><span class="line">精度：0.9149484536082474</span><br><span class="line">召回率：0.8942065491183879</span><br><span class="line">综合得分：0.9044585987261146</span><br></pre></td></tr></table></figure>
+<h4 id="朴素贝叶斯分类"><a href="#朴素贝叶斯分类" class="headerlink" title="朴素贝叶斯分类"></a>朴素贝叶斯分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.naive_bayes import GaussianNB</span><br><span class="line"></span><br><span class="line">Bayes &#x3D; GaussianNB()        #高斯朴素贝叶斯</span><br><span class="line">B_model &#x3D; Bayes.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; B_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;贝叶斯分类器&quot;, y_test, y_pred)</span><br><span class="line">贝叶斯分类器:</span><br><span class="line">精度：0.9148936170212766</span><br><span class="line">召回率：0.4332493702770781</span><br><span class="line">综合得分：0.5880341880341879</span><br></pre></td></tr></table></figure>
+<h4 id="随机森林-1"><a href="#随机森林-1" class="headerlink" title="随机森林"></a>随机森林</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import RandomForestClassifier</span><br><span class="line"></span><br><span class="line">forest_reg &#x3D; RandomForestClassifier(n_estimators&#x3D;15, random_state&#x3D;42, max_features&#x3D;3)</span><br><span class="line">forest_reg.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; forest_reg.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;随机森林&quot;, y_test, y_pred)</span><br><span class="line">随机森林:</span><br><span class="line">精度：0.9625668449197861</span><br><span class="line">召回率：0.906801007556675</span><br><span class="line">综合得分：0.933852140077821</span><br></pre></td></tr></table></figure>
+<h4 id="ADABOOST"><a href="#ADABOOST" class="headerlink" title="ADABOOST"></a>ADABOOST</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import AdaBoostClassifier</span><br><span class="line"></span><br><span class="line">ada &#x3D; AdaBoostClassifier(n_estimators&#x3D;100,algorithm&#x3D;&#39;SAMME.R&#39;)</span><br><span class="line">A_model &#x3D;ada.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; A_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;AdaBoost&quot;, y_test, y_pred)</span><br><span class="line">AdaBoost:</span><br><span class="line">精度：0.9105691056910569</span><br><span class="line">召回率：0.8463476070528967</span><br><span class="line">综合得分：0.877284595300261</span><br></pre></td></tr></table></figure>
+<h4 id="XGBOOST"><a href="#XGBOOST" class="headerlink" title="XGBOOST"></a>XGBOOST</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import xgboost as xgb</span><br><span class="line"></span><br><span class="line">params &#x3D; &#123;</span><br><span class="line">    &#39;booster&#39;: &#39;gbtree&#39;,</span><br><span class="line">    &#39;num_class&#39;: 2,               ## 类别数，与 multisoftmax 并用</span><br><span class="line">    &#39;gamma&#39;: 0.1,                  ## 用于控制是否后剪枝的参数,越大越保守，一般0.1、0.2这样子。</span><br><span class="line">    &#39;max_depth&#39;: 12,               ## 构建树的深度，越大越容易过拟合</span><br><span class="line">    &#39;lambda&#39;: 2,                   ## 控制模型复杂度的权重值的L2正则化项参数，参数越大，模型越不容易过拟合。</span><br><span class="line">    &#39;subsample&#39;: 0.7,              ## 随机采样训练样本</span><br><span class="line">    &#39;colsample_bytree&#39;: 0.7,       ## 生成树时进行的列采样</span><br><span class="line">    &#39;min_child_weight&#39;: 3,</span><br><span class="line">    &#39;silent&#39;: 1,                   ## 设置成1则没有运行信息输出，最好是设置为0.</span><br><span class="line">    &#39;eta&#39;: 0.007,</span><br><span class="line">    &#39;seed&#39;: 1000,</span><br><span class="line">    &#39;nthread&#39;: 4,</span><br><span class="line">&#125;</span><br><span class="line">params[&#39;eval_metric&#39;] &#x3D; &#39;error&#39;</span><br><span class="line">num_round &#x3D; 200</span><br><span class="line">dtest &#x3D; xgb.DMatrix( x_test, label&#x3D;y_test)</span><br><span class="line">dtrain &#x3D; xgb.DMatrix( x_train, label&#x3D;y_train)</span><br><span class="line">evallist  &#x3D; [(dtest,&#39;test&#39;), (dtrain,&#39;train&#39;)]</span><br><span class="line">xgbo &#x3D; xgb.XGBClassifier(max_depth&#x3D;3, n_estimators&#x3D;10000, learn_rate&#x3D;0.01)</span><br><span class="line">xgbo.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; xgbo.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;xgboost&quot;, y_test, y_pred)</span><br><span class="line">&#x2F;home&#x2F;cances&#x2F;.local&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;xgboost&#x2F;core.py:587: FutureWarning: Series.base is deprecated and will be removed in a future version</span><br><span class="line">  if getattr(data, &#39;base&#39;, None) is not None and \</span><br><span class="line">&#x2F;home&#x2F;cances&#x2F;.local&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;xgboost&#x2F;core.py:588: FutureWarning: Series.base is deprecated and will be removed in a future version</span><br><span class="line">  data.base is not None and isinstance(data, np.ndarray) \</span><br><span class="line">xgboost:</span><br><span class="line">精度：0.9545454545454546</span><br><span class="line">召回率：0.8992443324937027</span><br><span class="line">综合得分：0.9260700389105059</span><br></pre></td></tr></table></figure>
+<h4 id="GBDT-LR"><a href="#GBDT-LR" class="headerlink" title="GBDT+LR"></a>GBDT+LR</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import GradientBoostingClassifier</span><br><span class="line"></span><br><span class="line">gbm1 &#x3D; GradientBoostingClassifier(n_estimators&#x3D;50, random_state&#x3D;10, subsample&#x3D;0.6, max_depth&#x3D;7,</span><br><span class="line">                                  min_samples_split&#x3D;900)</span><br><span class="line">G_model &#x3D;gbm1.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; G_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;GBDT &quot;, y_test, y_pred)</span><br><span class="line">GBDT :</span><br><span class="line">精度：0.9351351351351351</span><br><span class="line">召回率：0.871536523929471</span><br><span class="line">综合得分：0.9022164276401564</span><br></pre></td></tr></table></figure>
+<h4 id="投票算法"><a href="#投票算法" class="headerlink" title="投票算法"></a>投票算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import VotingClassifier</span><br><span class="line"></span><br><span class="line">vot &#x3D; VotingClassifier(</span><br><span class="line">    estimators &#x3D; [(&#39;F&#39;, forest_reg), (&#39;X&#39;, xgbo)],</span><br><span class="line">    voting &#x3D; &#39;soft&#39;</span><br><span class="line">)</span><br><span class="line">v_model &#x3D; vot.fit(x_train, y_train)</span><br><span class="line">y_pred &#x3D; v_model.predict(x_test)</span><br><span class="line"></span><br><span class="line">score(&quot;Voting&quot;, y_test, y_pred)</span><br><span class="line">Voting:</span><br><span class="line">精度：0.9624664879356568</span><br><span class="line">召回率：0.9042821158690176</span><br><span class="line">综合得分：0.9324675324675323</span><br></pre></td></tr></table></figure>
+<h3 id="对随机森林进行参数优化测试"><a href="#对随机森林进行参数优化测试" class="headerlink" title="对随机森林进行参数优化测试"></a>对随机森林进行参数优化测试</h3><h4 id="Estimators参数调整"><a href="#Estimators参数调整" class="headerlink" title="Estimators参数调整"></a>Estimators参数调整</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">A_score &#x3D; []</span><br><span class="line">R_score &#x3D; []</span><br><span class="line">F_score &#x3D; []</span><br><span class="line"></span><br><span class="line">for i in range(1, 30):</span><br><span class="line">    forest_reg &#x3D; RandomForestClassifier(n_estimators&#x3D;i, random_state&#x3D;42, max_features&#x3D;2)</span><br><span class="line">    forest_reg.fit(x_train, y_train)</span><br><span class="line">    y_pred &#x3D; forest_reg.predict(x_test)</span><br><span class="line">    A_score.append(precision_score(y_test, y_pred))</span><br><span class="line">    R_score.append(recall_score(y_test, y_pred))</span><br><span class="line">    F_score.append(f1_score(y_test, y_pred))</span><br><span class="line">plt.plot(range(1,30), A_score, c&#x3D;&#39;r&#39;)</span><br><span class="line">plt.plot(range(1,30), R_score, c&#x3D; &#39;g&#39;)</span><br><span class="line">plt.plot(range(1,30), F_score, ls&#x3D;&#39;--&#39;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&lt;matplotlib.lines.Line2D at 0x7fb149b3c898&gt;]</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c9b431d6d021167de267d698ce119e55cf4a50.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c9b431d6d021167de267d698ce119e55cf4a50.png" srcset="data:image/png;base64,666" alt="png"></p>
+<h4 id="features参数调整"><a href="#features参数调整" class="headerlink" title="features参数调整"></a>features参数调整</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">A_score &#x3D; []</span><br><span class="line">R_score &#x3D; []</span><br><span class="line">F_score &#x3D; []</span><br><span class="line"></span><br><span class="line">for i in range(1, 5):</span><br><span class="line">    forest_reg &#x3D; RandomForestClassifier(n_estimators&#x3D;11, random_state&#x3D;42, max_features&#x3D;i)</span><br><span class="line">    forest_reg.fit(x_train, y_train)</span><br><span class="line">    y_pred &#x3D; forest_reg.predict(x_test)</span><br><span class="line">    A_score.append(precision_score(y_test, y_pred))</span><br><span class="line">    R_score.append(recall_score(y_test, y_pred))</span><br><span class="line">    F_score.append(f1_score(y_test, y_pred))</span><br><span class="line">plt.plot(range(1, 5), A_score, c&#x3D;&#39;r&#39;)</span><br><span class="line">plt.plot(range(1, 5), R_score, c&#x3D; &#39;g&#39;)</span><br><span class="line">plt.plot(range(1, 5), F_score, ls&#x3D;&#39;--&#39;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&lt;matplotlib.lines.Line2D at 0x7fb149b13470&gt;]</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/4dfb47d0297ba9e041d02c340c3e498f69ca26.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/4dfb47d0297ba9e041d02c340c3e498f69ca26.png" srcset="data:image/png;base64,666" alt="png"></p>
+<h3 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h3><h4 id="确定最终模型并将训练结果存储起来"><a href="#确定最终模型并将训练结果存储起来" class="headerlink" title="确定最终模型并将训练结果存储起来"></a>确定最终模型并将训练结果存储起来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.externals import joblib</span><br><span class="line"></span><br><span class="line">forest_reg &#x3D; RandomForestClassifier(n_estimators&#x3D;11, random_state&#x3D;42, max_features&#x3D;2)</span><br><span class="line">last_model &#x3D; forest_reg.fit(x_train, y_train)</span><br><span class="line">joblib.dump(last_model, &quot;model.pkl&quot;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#39;model.pkl&#39;]</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="读取模型的方法"><a href="#读取模型的方法" class="headerlink" title="读取模型的方法"></a>读取模型的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.externals import joblib</span><br><span class="line"></span><br><span class="line">joblib.load(&quot;model.pkl&quot;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RandomForestClassifier(bootstrap&#x3D;True, class_weight&#x3D;None, criterion&#x3D;&#39;gini&#39;,</span><br><span class="line">            max_depth&#x3D;None, max_features&#x3D;2, max_leaf_nodes&#x3D;None,</span><br><span class="line">            min_impurity_decrease&#x3D;0.0, min_impurity_split&#x3D;None,</span><br><span class="line">            min_samples_leaf&#x3D;1, min_samples_split&#x3D;2,</span><br><span class="line">            min_weight_fraction_leaf&#x3D;0.0, n_estimators&#x3D;11, n_jobs&#x3D;None,</span><br><span class="line">            oob_score&#x3D;False, random_state&#x3D;42, verbose&#x3D;0, warm_start&#x3D;False)</span><br></pre></td></tr></table></figure>
+
+
+<p>最后还有一个验证集部分，因为代码写的比较乱就不放上来了，结果还不错，大部分马都没能逃过模型的“法眼”。除了网站安装文件被误报其他的没有毛病了。安装文件本来也就有很大的权限，而且正常运营的网站也不应该存在安装文件，防止被重置网站，这样我的模型还有了一个可以检测安装文件是否被删除的附加功能，很满意。。。。</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/>https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>python</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>机器学习</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webshell/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>webshell</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/&title=基于机器学习的 WebShell 检测 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/&title=基于机器学习的 WebShell 检测 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/&title=基于机器学习的 WebShell 检测 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
+          
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/&text=基于机器学习的 WebShell 检测 - cances"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>12月内部红蓝</p>
+          <p class='content'>12月内部红蓝任意文件读取在12月的一个周末内部攻防群里发来了，攻防vpn信息和目标网站的域名。通过使用nmap扫描端口发现一共有两个正常的网站，一个是全球车辆定位系统
+
+另一个是用zblog搭...</p>
+        </a>
+      
+      
+        <a class='next' href='/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/'>
+          <p class='title'>php文件包含<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>本地文件包含的利用思路
+通过日志写入任意代码进行包含攻击
+利用上传点，上传正常文件包含webshell脚本
+LFI With PHPInfo Assistance
+包含session(默认php...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="minivaline_container">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9A%84%E5%9B%BE%E5%83%8F%EF%BC%8Cjs%E8%84%9A%E6%9C%AC%EF%BC%8Ccss%E6%A0%B7%E5%BC%8F%E7%AD%9B%E9%80%89%E5%87%BA%E5%8E%BB"><span class="toc-text">将文件夹中的图像，js脚本，css样式筛选出去</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E7%BB%9F%E4%B8%80%E7%BC%96%E7%A0%81%E4%B8%BAutf-8"><span class="toc-text">将文件统一编码为utf-8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%BB%E9%87%8D"><span class="toc-text">对列表中的文件进行去重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E4%B8%8D%E5%9C%A8%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E4%BB%8Ebuf%E4%B8%AD%E7%A7%BB%E9%99%A4"><span class="toc-text">将不在列表中的文件从buf中移除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E9%A2%84%E5%A4%84%E7%90%86%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%AF%B9%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">创建文件预处理流水线对文件进行处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%89%B9%E5%BE%81"><span class="toc-text">创建特征</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E7%AB%A0%E9%95%BF%E5%BA%A6"><span class="toc-text">统计文章长度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%96%87%E7%AB%A0%E7%9A%84%E7%86%B5%E5%80%BC"><span class="toc-text">计算文章的熵值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E7%AB%A0%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="toc-text">统计文章最长的单词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%96%87%E7%AB%A0%E4%B8%AD%E6%81%B6%E6%84%8F%E8%AF%8D%E6%B1%87%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">统计文章中恶意词汇的数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%96%87%E7%AB%A0%E7%9A%84%E5%8F%AF%E5%8E%8B%E7%BC%A9%E6%AF%94%E4%BE%8B"><span class="toc-text">计算文章的可压缩比例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E8%BF%87%E7%A8%8B%E6%89%93%E5%8C%85"><span class="toc-text">将特征提取过程打包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="toc-text">处理数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BB%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E8%AF%BB%E5%8F%96%E5%87%BA%E6%9D%A5"><span class="toc-text">将数据从文件夹读取出来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE"><span class="toc-text">创建标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%90%84%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%B9%E5%BE%81%E5%80%BC"><span class="toc-text">计算各个文件的特征值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E7%89%B9%E5%BE%81%E9%9B%86%E5%90%88%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AADataFrame"><span class="toc-text">将特征集合在一起，生成一个DataFrame</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%89%8D%E4%BA%94%E6%9D%A1%E6%95%B0%E6%8D%AE"><span class="toc-text">查看前五条数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E6%95%B4%E4%BD%93%E7%8A%B6%E5%86%B5"><span class="toc-text">查看数据的整体状况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E4%B8%AD%E4%B8%A4%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%89%80%E5%8D%A0%E6%AF%94%E4%BE%8B"><span class="toc-text">查看数据中两种数据所占比例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E4%B8%89%E4%B8%AA%E7%89%B9%E5%BE%81%E6%A0%BC%E5%BC%8F%E4%B8%8D%E6%AD%A3%E7%A1%AE%EF%BC%8C%E8%BF%9B%E8%A1%8C%E8%BD%AC%E6%8D%A2"><span class="toc-text">有三个特征格式不正确，进行转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="toc-text">分析数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E4%B8%AA%E7%89%B9%E5%BE%81%E5%AF%B9%E4%BA%8E%E4%B8%A4%E7%B1%BB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="toc-text">五个特征对于两类文件的平均值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E7%94%BB%E5%9B%BE%E7%9A%84%E5%BA%93"><span class="toc-text">导入画图的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%90%84%E4%B8%AA%E7%89%B9%E5%BE%81%E4%BB%A5%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%9A%84%E7%95%8C%E9%9D%A2%E5%B1%95%E7%8E%B0%E5%87%BA%E6%9D%A5"><span class="toc-text">将各个特征以图形化的界面展现出来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%87%BA%E5%90%84%E4%B8%AA%E5%8F%82%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9A%AE%E5%B0%94%E9%80%8A%E7%B3%BB%E6%95%B0"><span class="toc-text">计算出各个参数之间的皮尔逊系数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89shell%E5%8D%A0%E6%AF%94%E4%BE%8B%E5%B0%86%E6%95%B0%E6%8D%AE%E5%9D%87%E5%8C%80%E5%88%86%E5%BC%80"><span class="toc-text">按shell占比例将数据均匀分开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86X%EF%BC%8CY%E5%88%86%E7%A6%BB"><span class="toc-text">将X，Y分离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5%E6%80%A7%E8%83%BD%E8%80%83%E6%A0%B8%E5%87%BD%E6%95%B0%EF%BC%8C%E5%B9%B6%E5%AF%B9%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E8%AF%84%E5%AE%9A"><span class="toc-text">载入性能考核函数，并对结果进行评定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">分类算法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E6%9C%89%E5%BD%B1%E5%93%8D%E5%8A%9B%E7%9A%84%E5%8D%81%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%AE%97%E6%B3%95%E4%B8%AD%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-text">最有影响力的十大数据挖掘算法中包含的分类算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#k%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95"><span class="toc-text">k近邻算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SVM%E6%B3%95"><span class="toc-text">SVM法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">决策树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="toc-text">朴素贝叶斯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">神经网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">逻辑回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#adaboost"><span class="toc-text">adaboost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xgboost"><span class="toc-text">xgboost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gbdt-lr"><span class="toc-text">gbdt+lr</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E5%B0%9D%E8%AF%95"><span class="toc-text">分类算法尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#K%E8%BF%91%E9%82%BB%E6%B3%95"><span class="toc-text">K近邻法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-text">支持向量机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91-1"><span class="toc-text">决策树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB"><span class="toc-text">朴素贝叶斯分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-1"><span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ADABOOST"><span class="toc-text">ADABOOST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XGBOOST"><span class="toc-text">XGBOOST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GBDT-LR"><span class="toc-text">GBDT+LR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95"><span class="toc-text">投票算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E8%BF%9B%E8%A1%8C%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-text">对随机森林进行参数优化测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Estimators%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4"><span class="toc-text">Estimators参数调整</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#features%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4"><span class="toc-text">features参数调整</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BE%E5%A3%B0"><span class="toc-text">尾声</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%9C%80%E7%BB%88%E6%A8%A1%E5%9E%8B%E5%B9%B6%E5%B0%86%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%AD%98%E5%82%A8%E8%B5%B7%E6%9D%A5"><span class="toc-text">确定最终模型并将训练结果存储起来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">读取模型的方法</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="基于机器学习的 WebShell 检测";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2020-2021 cances</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script>
+  function load_minivaline() {
+	setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/minivaline@latest', pjax_minivaline)
+	
+	}, 1);
+  };
+  function pjax_minivaline() {
+  if(!document.querySelectorAll("#minivaline_container")[0])return;
+  let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  let path = pdata.commentPath;
+  if (path.length == 0) {
+    let defaultPath = '';
+    path = defaultPath || decodeURI(window.location.pathname);
+  }
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq"}, {
+	  el: '#minivaline_container',
+	  pathname: path,
+	  placeholder: pagePlaceholder,
+    }));
+  }
+  $(function () {
+    if(!document.querySelectorAll("#minivaline_container")[0])return;
+    load_minivaline();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://canc3s.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://canc3s.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://canc3s.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+	 
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+        
+        
+          if (typeof MiniValine == "undefined") {
+            load_minivaline();
+          } else {
+            pjax_minivaline();
+          }
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

@@ -142,11 +142,11 @@
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
                   
                   
                   
-                    id="friends"
+                    id="blogfriends"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -291,11 +291,11 @@
               
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
                   
                   
                   
-                    id="friends"
+                    id="blogfriends"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -384,13 +384,11 @@
     
         <div id="half" class='cover-wrapper  search' style="display: ;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
     
-    
-      <p class="title">cances</p>
     
     
   </div>
@@ -464,14 +462,10 @@
         
           
         
-        
           
         
           
         
-          
-        
-          
         
           
         
@@ -506,16 +500,19 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/23/hello-world/">
-        Hello World
+      <a href="/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/">
+        1月内部红蓝
       </a>
     </h2>
   
   <div class='md'>
     
       
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
+
+后来群里有人说有网站备份文件，访问wwwroot.zip下载到网站备份文件。浏览了一下发现有些缓存文件，访问后得到绝对路径。
+
+其实这次的靶场应该是某次CTF的原题，但环境是一开始是php5.4，尝试了一些方法没成功...
       
     
   </div>
@@ -523,12 +520,215 @@ Qu...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-23</time>
+        <time>2021-01-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">内部红蓝记录</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/23/hello-world/'>
+          <a class='readmore' href='/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/26/spring-boot%E4%B9%8Bheapdump/">
+        spring boot之heapdump
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        准备工作首先要获取heapdump。从http://www.xx.com/heapdump获取调用栈相关信息，如果是 sping boot 2.x 的话路径就是：http://www.xx.com/actuator/heapdump
+
+然后下载 Eclipse Memory Analyzer 工具来分析 /heapdump 或 /actuator/heapdump 接口下载的 jvm hea...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/26/spring-boot%E4%B9%8Bheapdump/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/">
+        通过NS服务器收集域名
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        通过NS服务器收集域名其技术原理是向dns发送一个解析请求，看是否有返回ns信息，如果有的话将会使用该ns信息与历史沉淀下的dns数据信息进行交叉对比，最后返回一个n个不同的域名使用同一个ns服务器的列表。
+这种域名收集方式比较适合有自建DNS服务器且有大量一级域名的大型企业。比如，BAT。
+利用手段
+以百度为例
+
+首先通过nslookup，查询到一些已知域名的NS服务器。
+12nslook...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-30</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/">资产收集</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/">
+        12月内部红蓝
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        12月内部红蓝任意文件读取在12月的一个周末内部攻防群里发来了，攻防vpn信息和目标网站的域名。通过使用nmap扫描端口发现一共有两个正常的网站，一个是全球车辆定位系统
+
+另一个是用zblog搭建的一个博客通知系统。
+
+通过简单的猜测找到博客系统的后台后件但测试了几个弱口令没有进去，然后就去看另一个站了。乍一看，是个全“静态“网站，直接放一个图片在网站上，是攻防比赛时某些防守方的惯用手段，只...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-12-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">内部红蓝记录</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/">
+        基于机器学习的 WebShell 检测
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+当时为了完成毕设写的一个小东西，留作纪念。大佬们看了轻喷
+
+学习网络安安全有段时间了，对Web安全已经建立了一个系统的认识。而且自己一直对人工智能、机器学习这类东西蛮感兴趣的，而且一直在看《Hands On Machine Learning with Scikit Learn and TensorFlow》这本书，所以在做毕业设计时第一时间就想到了把机器学习和Web安全结合在一起。
+现在有...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2019-04-06</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/'>
             阅读全文
           </a>
         </div>
@@ -628,6 +828,9 @@ reuqire()...
         
         <time>2019-01-06</time>
         
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+        
       </div>
       
         <div>
@@ -653,7 +856,57 @@ reuqire()...
   
     
     <h2 class="article-title" >
-      <a href="/2018/07/24/markdown/">
+      <a href="/2018/01/03/%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/">
+        标签插件
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        为了兼容老用户，旧的标签插件在重构之前依然沿用旧的格式，即「英文逗号+空格」作为参数分隔符，而部分新增标签插件是「空格+英文竖线+空格」，请注意区分。
+
+我们也在探索哪种分隔符既简单又不容易引起冲突，所以可能存在多种格式，具体以对应文档描述为准。
+
+text这是一些文本样式标签：
+带 下划线 的文本
+example.md:1带 &#123;% u 下划线 %&#125; 的文本
+带 着重号 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2018-01-03</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2018/01/03/%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2018/01/02/markdown/">
         Markdown Style test
       </a>
     </h2>
@@ -667,12 +920,12 @@ reuqire()...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2018-07-24</time>
+        <time>2018-01-02</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2018/07/24/markdown/'>
+          <a class='readmore' href='/2018/01/02/markdown/'>
             阅读全文
           </a>
         </div>
@@ -694,20 +947,16 @@ reuqire()...
   
     
     <h2 class="article-title" >
-      <a href="/2013/12/26/images/">
-        Images
+      <a href="/2018/01/01/hello-world/">
+        Hello World
       </a>
     </h2>
   
   <div class='md'>
     
       
-        This is a image test post.
-
-
-
-
-
+        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Qu...
       
     
   </div>
@@ -715,242 +964,12 @@ reuqire()...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2013-12-26</time>
+        <time>2018-01-01</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2013/12/26/images/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2013/12/25/no-title/">
-        2013年12月25日
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        This post doesn’t have a title. Make sure it’s accessible.
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2013-12-25</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2013/12/25/no-title/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2013/12/25/videos/">
-        Videos
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        This is a video test post.
-Youtube
-
-
-Vimeo
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2013-12-25</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2013/12/25/videos/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2013/12/25/tag-plugins/">
-        Tag Plugins
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        This post is used for testing tag plugins. See docs for more info.
-Block QuoteNormal blockquote
-Praesent diam elit, interdum ut pulvinar placerat, imperdiet at magna.
-
-Quote from a bookDo not just ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2013-12-25</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2013/12/25/tag-plugins/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a target="_blank" rel="noopener" href="http://www.google.com/">
-        www.google.com
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        This is a link post without a title. The title should be the link with or without protocol. Clicking on the link should open Google in a new tab or window.
-
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2013-12-24</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' target="_blank" rel="noopener" href='http://www.google.com/'>
-            去源站阅读
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2013/12/24/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/">
-        日本語テスト
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        This is a Japanese test post.
-私は昨日ついにその助力家というのの上よりするたなけれ。
-最も今をお話団はちょうどこの前後なかろでくらいに困りがいるたをは帰着考えたなかって、そうにもするでうたらない。
-がたを知っないはずも同時に九月をいよいよたありた。
-もっと槙さんにぼんやり金少し説明にえた自分大した人私か影響にというお関係たうませないが、この次第も私か兄具合に使う...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2013-12-24</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2013/12/24/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/'>
+          <a class='readmore' href='/2018/01/01/hello-world/'>
             阅读全文
           </a>
         </div>
@@ -967,21 +986,6 @@ Quote from a bookDo not just ...
   </section>
   
     
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
   
 
 
@@ -996,18 +1000,17 @@ Quote from a bookDo not just ...
   <div class='content'>
     
       
-        <a class='avatar flat-box rectangle' href='/about/'>
+        <div class='avatar'>
           <img no-lazy src='https://avatars.githubusercontent.com/u/36873866'/>
-        </a>
+        </div>
       
     
     
       <div class='text'>
         
+          <h2>cances</h2>
         
         
-          <p><span id="jinrishici-sentence">cances</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         
       </div>
     
@@ -1051,6 +1054,44 @@ Quote from a bookDo not just ...
   
     
     
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"
+            id="categorieswebE5AE89E585A8"
+            ><div class='name'>web安全</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/"
+            id="categoriesE58685E983A8E7BAA2E8939DE8AEB0E5BD95"
+            ><div class='name'>内部红蓝记录</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BC%96%E7%A8%8B/" href="/categories/%E7%BC%96%E7%A8%8B/"
+            id="categoriesE7BC96E7A88B"
+            ><div class='name'>编程</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/" href="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/"
+            id="categoriesE8B584E4BAA7E694B6E99B86"
+            ><div class='name'>资产收集</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
 
   
 
@@ -1069,7 +1110,7 @@ Quote from a bookDo not just ...
 
 
     <div class='content'>
-      <a href="/tags/Bar/" style="font-size: 24px; color: #555">Bar</a> <a href="/tags/Baz/" style="font-size: 14px; color: #999">Baz</a> <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/Foo/" style="font-size: 24px; color: #555">Foo</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a>
+      <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/php/" style="font-size: 19px; color: #777">php</a> <a href="/tags/python/" style="font-size: 19px; color: #777">python</a> <a href="/tags/sqli/" style="font-size: 14px; color: #999">sqli</a> <a href="/tags/web/" style="font-size: 24px; color: #555">web</a> <a href="/tags/webshell/" style="font-size: 14px; color: #999">webshell</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 14px; color: #999">信息收集</a> <a href="/tags/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/" style="font-size: 19px; color: #777">内部红蓝</a> <a href="/tags/%E5%9F%9F%E5%90%8D/" style="font-size: 14px; color: #999">域名</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">爬虫</a>
     </div>
   </section>
 
@@ -1125,7 +1166,7 @@ Quote from a bookDo not just ...
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © 2020-2021 canc3s</a></p>
+        <p><a href="/">Copyright © 2020-2021 cances</a></p>
 
         </div>
       
