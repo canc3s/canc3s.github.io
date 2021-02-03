@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2021/1 - cances</title>
+  <title>分类：权限维持 - cances</title>
   
 
   
@@ -58,7 +58,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -376,7 +376,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper  search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -436,9 +436,11 @@
       <div class='body-wrapper' id="pjax-container">
         
 
+
 <div class='l_main'>
-	
-		
+  
+    
+      
   <section class="post-list">
     
       
@@ -460,19 +462,22 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/">
-        1月内部红蓝
+      <a href="/2020/12/26/tsh/">
+        tsh
       </a>
     </h2>
   
   <div class='md'>
     
       
-        1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
+        介绍下载地址：https://github.com/orangetw/tsh
+功能：
 
-后来群里有人说有网站备份文件，访问wwwroot.zip下载到网站备份文件。浏览了一下发现有些缓存文件，访问后得到绝对路径。
+通信加密
+支持上传、下载、直接反弹shell
 
-其实这次的靶场应该是某次CTF的原题，但环境是一开始是php5.4，尝试了一些方法没成功...
+tsh.h文件，用来配置生成的tsh
+12345678910111213141516#ifndef _TSH_H#define _TSH_Hchar *secret = &quot;rc9c0r0e72t5ag0pl79a75c54r1d&quot;;  /...
       
     
   </div>
@@ -480,15 +485,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-26</time>
+        <time>2020-12-26</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">内部红蓝记录</a>
+          <a class="category-link" href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+          <a class='readmore' href='/2020/12/26/tsh/'>
             阅读全文
           </a>
         </div>
@@ -510,17 +515,22 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/26/spring-boot%E4%B9%8Bheapdump/">
-        spring boot之heapdump
+      <a href="/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/">
+        Linux 权限维持整理
       </a>
     </h2>
   
   <div class='md'>
     
       
-        准备工作首先要获取heapdump。从http://www.xx.com/heapdump获取调用栈相关信息，如果是 sping boot 2.x 的话路径就是：http://www.xx.com/actuator/heapdump
+        
+大部分来自网上，整理的笔记
 
-然后下载 Eclipse Memory Analyzer 工具来分析 /heapdump 或 /actuator/heapdump 接口下载的 jvm hea...
+
+修改文件/终端属性1. 文件创建时间如果蓝队根据文件修改时间来判断文件是否为后门，如参考index.php的时间再来看shell.php的时间就可以判断shell.php的生成时间有问题。
+解决方法：
+1touch -r index.php shell.php
+touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个...
       
     
   </div>
@@ -528,15 +538,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-26</time>
+        <time>2020-07-20</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+          <a class="category-link" href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/26/spring-boot%E4%B9%8Bheapdump/'>
+          <a class='readmore' href='/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/'>
             阅读全文
           </a>
         </div>
@@ -556,7 +566,8 @@
   
 
 
-	
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -710,7 +721,7 @@
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 

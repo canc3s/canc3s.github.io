@@ -5,7 +5,9 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
+      
+        <meta name="robots" content="noindex,follow">
+      
     
   
   <!-- 渲染优化 -->
@@ -21,7 +23,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2021/1 - cances</title>
+  <title>cances</title>
   
 
   
@@ -58,7 +60,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -376,7 +378,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="full" class='cover-wrapper  search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -437,17 +439,8 @@
         
 
 <div class='l_main'>
-	
-		
+  
   <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
     
     
       
@@ -460,35 +453,26 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/">
-        1月内部红蓝
+      <a href="/2018/01/02/markdown/">
+        Markdown Style test
       </a>
     </h2>
   
   <div class='md'>
     
-      
-        1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
-
-后来群里有人说有网站备份文件，访问wwwroot.zip下载到网站备份文件。浏览了一下发现有些缓存文件，访问后得到绝对路径。
-
-其实这次的靶场应该是某次CTF的原题，但环境是一开始是php5.4，尝试了一些方法没成功...
-      
+      <p>This post is originated from <a target="_blank" rel="noopener" href="https://gist.github.com/apackeer/4159268">here</a> and is used for testing markdown style. This post contains nearly every markdown usage. Make sure all the markdown elements below show up correctly.</p>
     
   </div>
   
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">内部红蓝记录</a>
+        <time>2018-01-02</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+          <a class='readmore' href='/2018/01/02/markdown/'>
             阅读全文
           </a>
         </div>
@@ -510,17 +494,16 @@
   
     
     <h2 class="article-title" >
-      <a href="/2021/01/26/spring-boot%E4%B9%8Bheapdump/">
-        spring boot之heapdump
+      <a href="/2018/01/01/hello-world/">
+        Hello World
       </a>
     </h2>
   
   <div class='md'>
     
       
-        准备工作首先要获取heapdump。从http://www.xx.com/heapdump获取调用栈相关信息，如果是 sping boot 2.x 的话路径就是：http://www.xx.com/actuator/heapdump
-
-然后下载 Eclipse Memory Analyzer 工具来分析 /heapdump 或 /actuator/heapdump 接口下载的 jvm hea...
+        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Qu...
       
     
   </div>
@@ -528,15 +511,12 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2021-01-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+        <time>2018-01-01</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/01/26/spring-boot%E4%B9%8Bheapdump/'>
+          <a class='readmore' href='/2018/01/01/hello-world/'>
             阅读全文
           </a>
         </div>
@@ -553,10 +533,24 @@
   </section>
   
     
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
+    
   
 
 
-	
 </div>
 <aside class='l_side'>
   
@@ -696,6 +690,7 @@
 </aside>
 
 
+
         
         
           <!--此文件用来存放一些不方便取值的变量-->
@@ -710,7 +705,7 @@
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
