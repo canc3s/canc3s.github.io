@@ -467,7 +467,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年12月26日</p>
+    <p>发布于：2021年1月30日</p>
   </a>
 </div>
 
@@ -478,7 +478,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="tsh" data-path="/2020/12/26/tsh/">
+      <div id="lc-pv" data-title="tsh" data-path="/2021/01/30/tsh/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -549,7 +549,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://canc3s.github.io/2020/12/26/tsh/>https://canc3s.github.io/2020/12/26/tsh/</a></p>
+                <p>本文永久链接是：<a href=https://canc3s.github.io/2021/01/30/tsh/>https://canc3s.github.io/2021/01/30/tsh/</a></p>
               
             
           </blockquote>
@@ -581,7 +581,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2020/12/26/tsh/&title=tsh - cances&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2021/01/30/tsh/&title=tsh - cances&summary="
           
           >
           
@@ -593,7 +593,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2020/12/26/tsh/&title=tsh - cances&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2021/01/30/tsh/&title=tsh - cances&summary="
           
           >
           
@@ -605,7 +605,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2020/12/26/tsh/&title=tsh - cances&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2021/01/30/tsh/&title=tsh - cances&summary="
           
           >
           
@@ -617,7 +617,7 @@
       
         <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
           
-            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2020/12/26/tsh/&text=tsh - cances"
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2021/01/30/tsh/&text=tsh - cances"
           
           >
           
@@ -643,21 +643,12 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>12月内部红蓝</p>
-          <p class='content'>12月内部红蓝任意文件读取在12月的一个周末内部攻防群里发来了，攻防vpn信息和目标网站的域名。通过使用nmap扫描端口发现一共有两个正常的网站，一个是全球车辆定位系统
-
-另一个是用zblog搭...</p>
-        </a>
       
-      
-        <a class='next' href='/2020/07/20/Linux-%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%95%B4%E7%90%86/'>
-          <p class='title'>Linux 权限维持整理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>
-大部分来自网上，整理的笔记
+        <a class='next' href='/2021/01/26/1%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+          <p class='title'>1月内部红蓝<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
 
-
-修改文件/终端属性1. 文件创建时间如果蓝队根据文件修改时间来判断文件是否为后门，如参考index.php的时间再来看shell.php的时间就可以判断shel...</p>
+后来群里有人说有...</p>
         </a>
       
     </div>
@@ -955,6 +946,61 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
 
 
 
@@ -977,7 +1023,7 @@ var loadCSS = function( href, before, media, attributes ){
     let defaultPath = '';
     path = defaultPath || decodeURI(window.location.pathname);
   }
-    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq"}, {
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/npm/alus@latest","https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
 	  el: '#minivaline_container',
 	  pathname: path,
 	  placeholder: pagePlaceholder,
@@ -1421,6 +1467,8 @@ document.addEventListener("pjax:success", listennSidebarTOC);
         
         
         
+        
+          pjax_initCopyCode();
         
         
         

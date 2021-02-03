@@ -762,16 +762,11 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/12/26/tsh/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>tsh</p>
-          <p class='content'>介绍下载地址：https://github.com/orangetw/tsh
-功能：
+        <a class='prev' href='/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>12月内部红蓝</p>
+          <p class='content'>12月内部红蓝任意文件读取在12月的一个周末内部攻防群里发来了，攻防vpn信息和目标网站的域名。通过使用nmap扫描端口发现一共有两个正常的网站，一个是全球车辆定位系统
 
-通信加密
-支持上传、下载、直接反弹shell
-
-tsh.h文件，用来配置生成的tsh
-1234567891...</p>
+另一个是用zblog搭...</p>
         </a>
       
       
@@ -1078,6 +1073,61 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
 
 
 
@@ -1100,7 +1150,7 @@ var loadCSS = function( href, before, media, attributes ){
     let defaultPath = '';
     path = defaultPath || decodeURI(window.location.pathname);
   }
-    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq"}, {
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/npm/alus@latest","https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
 	  el: '#minivaline_container',
 	  pathname: path,
 	  placeholder: pagePlaceholder,
@@ -1544,6 +1594,8 @@ document.addEventListener("pjax:success", listennSidebarTOC);
         
         
         
+        
+          pjax_initCopyCode();
         
         
         
