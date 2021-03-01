@@ -449,6 +449,13 @@
                   </span>
                 </a>
               
+                <a class="" href="/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                  <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;信息收集</span>
+                  <span class="title">
+                    (1)
+                  </span>
+                </a>
+              
                 <a class="" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">
                   <span><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;内部红蓝记录</span>
                   <span class="title">
@@ -806,13 +813,13 @@ var loadCSS = function( href, before, media, attributes ){
   };
   function pjax_minivaline() {
   if(!document.querySelectorAll("#minivaline_container")[0])return;
-  let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  let pagePlaceholder = pdata.commentPlaceholder || "大佬请坐~";
   let path = pdata.commentPath;
   if (path.length == 0) {
     let defaultPath = '';
     path = defaultPath || decodeURI(window.location.pathname);
   }
-    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/npm/alus@latest","https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"大佬请坐~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
 	  el: '#minivaline_container',
 	  pathname: path,
 	  placeholder: pagePlaceholder,

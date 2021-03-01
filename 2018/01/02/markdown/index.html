@@ -1162,13 +1162,13 @@ var loadCSS = function( href, before, media, attributes ){
   };
   function pjax_minivaline() {
   if(!document.querySelectorAll("#minivaline_container")[0])return;
-  let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  let pagePlaceholder = pdata.commentPlaceholder || "大佬请坐~";
   let path = pdata.commentPath;
   if (path.length == 0) {
     let defaultPath = '';
     path = defaultPath || decodeURI(window.location.pathname);
   }
-    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"快来评论吧~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/npm/alus@latest","https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
+    new MiniValine(Object.assign({"js":"https://cdn.jsdelivr.net/npm/minivaline@latest","path":null,"placeholder":"大佬请坐~","appId":"iMSDAhwqPtIXRIwD5jV5GD1P-MdYXbMMI","appKey":"xOK2meC6n8rsbW46wbFbCtLq","emoticonUrl":["https://cdn.jsdelivr.net/gh/MiniValine/qq@latest","https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@latest","https://cdn.jsdelivr.net/gh/MiniValine/tieba@latest","https://cdn.jsdelivr.net/gh/MiniValine/twemoji@latest","https://cdn.jsdelivr.net/gh/MiniValine/weibo@latest"]}, {
 	  el: '#minivaline_container',
 	  pathname: path,
 	  placeholder: pagePlaceholder,
