@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：资产收集 - cances</title>
+  <title>标签：钓鱼 - cances</title>
   
 
   
@@ -460,21 +460,19 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/12/30/">
-        通过NS服务器收集域名
+      <a href="/2021/03/12/">
+        基于反向代理的水坑攻击
       </a>
     </h2>
   
   <div class='md'>
     
       
-        通过NS服务器收集域名其技术原理是向dns发送一个解析请求，看是否有返回ns信息，如果有的话将会使用该ns信息与历史沉淀下的dns数据信息进行交叉对比，最后返回一个n个不同的域名使用同一个ns服务器的列表。
-这种域名收集方式比较适合有自建DNS服务器且有大量一级域名的大型企业。比如，BAT。
-利用手段
-以百度为例
+        完整项目代码：https://github.com/canc3s/judas
 
-首先通过nslookup，查询到一些已知域名的NS服务器。
-12nslook...
+该文章是看到倾旋大佬《红队技巧：基于反向代理的水坑攻击》后的一系列实践与思考。
+
+前言关于网站克隆方面，可以分两种，一种是利用 SET，CS，copysite 等工具，通过copy网站的html，js，css等资源文件来达到镜像网站的目的。第二种就是利用 Nginx, OpenResty  等反向代理工具反代目标...
       
     
   </div>
@@ -482,15 +480,15 @@
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-12-30</time>
+        <time>2021-03-12</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/">资产收集</a>
+          <a class="category-link" href="/categories/%E7%BA%A2%E8%93%9D%E6%8A%80%E5%B7%A7/">红蓝技巧</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/12/30/'>
+          <a class='readmore' href='/2021/03/12/'>
             阅读全文
           </a>
         </div>

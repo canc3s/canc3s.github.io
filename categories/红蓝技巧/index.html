@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -19,9 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>通过NS服务器收集域名 - cances</title>
-  
-    <meta name="keywords" content="信息收集,域名">
+  <title>分类：红蓝技巧 - cances</title>
   
 
   
@@ -376,7 +376,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post search' style="display: none;">
+        <div id="full" class='cover-wrapper  search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -436,241 +436,80 @@
       <div class='body-wrapper' id="pjax-container">
         
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
-    
-    
-      <h1 class="title">
-        通过NS服务器收集域名
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/">资产收集</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年12月30日</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="通过NS服务器收集域名" data-path="/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+  <section class="post-list">
+    
+      
+        
           
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/03/12/">
+        基于反向代理的水坑攻击
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        完整项目代码：https://github.com/canc3s/judas
+
+该文章是看到倾旋大佬《红队技巧：基于反向代理的水坑攻击》后的一系列实践与思考。
+
+前言关于网站克隆方面，可以分两种，一种是利用 SET，CS，copysite 等工具，通过copy网站的html，js，css等资源文件来达到镜像网站的目的。第二种就是利用 Nginx, OpenResty  等反向代理工具反代目标...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-03-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BA%A2%E8%93%9D%E6%8A%80%E5%B7%A7/">红蓝技巧</a>
         
       </div>
-    
-  </div>
-
-
-  
-  <h1 id="通过NS服务器收集域名"><a href="#通过NS服务器收集域名" class="headerlink" title="通过NS服务器收集域名"></a>通过NS服务器收集域名</h1><p>其技术原理是向dns发送一个解析请求，看是否有返回ns信息，如果有的话将会使用该ns信息与历史沉淀下的dns数据信息进行交叉对比，最后返回一个n个不同的域名使用同一个ns服务器的列表。</p>
-<p>这种域名收集方式比较适合有自建DNS服务器且有大量一级域名的大型企业。比如，BAT。</p>
-<h1 id="利用手段"><a href="#利用手段" class="headerlink" title="利用手段"></a>利用手段</h1><blockquote>
-<p>以百度为例</p>
-</blockquote>
-<p>首先通过nslookup，查询到一些已知域名的NS服务器。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=ns</span><br></pre></td></tr></table></figure>
-<p>通过已知的一些一级域名，查询出该公司在使用的一些ns服务器。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/9a261c1865475b84141e0f60bc3966f4cf189d.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/9a261c1865475b84141e0f60bc3966f4cf189d.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/4ededda89b3bf01d5bd7745257be2a266b0e80.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/4ededda89b3bf01d5bd7745257be2a266b0e80.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled%201.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/bbee0056d2d1596b1f592121c3c5cd34ec8e88.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/bbee0056d2d1596b1f592121c3c5cd34ec8e88.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled%202.png"></p>
-<p>当然也要注意有些一级域名可以并不是用的自己的NS服务器，还需要进一步判断</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/438df4a7c0d0f19e24b56db9a7097b35052129.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/438df4a7c0d0f19e24b56db9a7097b35052129.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled%203.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/66107557d673972dcd1055dc3ec500de5cc808.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/66107557d673972dcd1055dc3ec500de5cc808.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled%204.png"></p>
-<p>然后整理收集到的NS服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dns.baidu.com</span><br><span class="line">ns1.baidu.com</span><br><span class="line">ns2.baidu.com</span><br><span class="line">...</span><br><span class="line">sv1.bdydns.cn</span><br><span class="line">sv2.bdydns.cn</span><br><span class="line">sv3.bdydns.cn</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>然后利用ns服务器历史解析记录的调用接口一一查询</p>
-<ul>
-<li><p>查找ns服务器的免费接口调用地址:</p>
-<p>  <a target="_blank" rel="noopener" href="https://api.hackertarget.com/findshareddns/?q=ns1.dnsserver.com">https://api.hackertarget.com/findshareddns/?q=ns1.dnsserver.com</a></p>
-</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/18ccc7c88dd28162c0092116732040ee3ec106.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/18ccc7c88dd28162c0092116732040ee3ec106.png" srcset="data:image/png;base64,666" alt="%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D%2031be770fd2084612a3ee7be03b60ee08/Untitled%205.png"></p>
-<p>然后，整理，去重，验证是否真的是该公司资产。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><ol>
-<li>越大型的互联网公司，效果越好</li>
-<li>大部分ns服务器都有命名规律，如<code>ns1</code>,<code>ns2</code>……</li>
-<li>有时候公司虽然有自己的dns服务器，但是仍然会使用一些服务器厂商的dns</li>
-<li>存在并不是该公司的资产，但仍然解析到该公司dsn服务器的情况。（数量不多）</li>
-<li>因为存在上面两种情况，所以写自动化脚本递归查询时需要增加验证。</li>
-</ol>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/>https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/2021/03/12/'>
+            阅读全文
+          </a>
         </div>
       
-      
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>信息收集</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%9F%9F%E5%90%8D/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>域名</p></a></div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/&title=通过NS服务器收集域名 - cances&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/&title=通过NS服务器收集域名 - cances&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/&title=通过NS服务器收集域名 - cances&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
-          
-            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2020/12/30/%E9%80%9A%E8%BF%87NS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%B6%E9%9B%86%E5%9F%9F%E5%90%8D/&text=通过NS服务器收集域名 - cances"
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-  </div>
 </div>
 
-
-
+          </div>
         
       
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2021/01/26/spring-boot%E4%B9%8Bheapdump/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>spring boot之heapdump</p>
-          <p class='content'>准备工作首先要获取heapdump。从http://www.xx.com/heapdump获取调用栈相关信息，如果是 sping boot 2.x 的话路径就是：http://www.xx.co...</p>
-        </a>
-      
-      
-        <a class='next' href='/2020/12/26/12%E6%9C%88%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/'>
-          <p class='title'>12月内部红蓝<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>12月内部红蓝任意文件读取在12月的一个周末内部攻防群里发来了，攻防vpn信息和目标网站的域名。通过使用nmap扫描端口发现一共有两个正常的网站，一个是全球车辆定位系统
-
-另一个是用zblog搭...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="minivaline_container">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
+  </section>
+  
+    
+  
 
 
-
-
-
+    
+  
 </div>
 <aside class='l_side'>
   
@@ -678,28 +517,146 @@
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img no-lazy src='https://avatars.githubusercontent.com/u/36873866'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>cances</h2>
+        
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:cances@foxmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/canc3s/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
+      <ul class="entry navigation">
         
+          <li><a class="flat-box"
+            title="/categories/web%E5%AE%89%E5%85%A8/" href="/categories/web%E5%AE%89%E5%85%A8/"
+            id="categorieswebE5AE89E585A8"
+            ><div class='name'>web安全</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" href="/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+            id="categoriesE4BFA1E681AFE694B6E99B86"
+            ><div class='name'>信息收集</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/"
+            id="categoriesE58685E983A8E7BAA2E8939DE8AEB0E5BD95"
+            ><div class='name'>内部红蓝记录</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/"
+            id="categoriesE69D83E99990E7BBB4E68C81"
+            ><div class='name'>权限维持</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BA%A2%E8%93%9D%E6%8A%80%E5%B7%A7/" href="/categories/%E7%BA%A2%E8%93%9D%E6%8A%80%E5%B7%A7/"
+            id="categoriesE7BAA2E8939DE68A80E5B7A7"
+            ><div class='name'>红蓝技巧</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BC%96%E7%A8%8B/" href="/categories/%E7%BC%96%E7%A8%8B/"
+            id="categoriesE7BC96E7A88B"
+            ><div class='name'>编程</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/" href="/categories/%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86/"
+            id="categoriesE8B584E4BAA7E694B6E99B86"
+            ><div class='name'>资产收集</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
     </div>
   </section>
 
 
   
 
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/CVE/" style="font-size: 14px; color: #999">CVE</a> <a href="/tags/golang/" style="font-size: 14px; color: #999">golang</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/linux/" style="font-size: 19px; color: #777">linux</a> <a href="/tags/php/" style="font-size: 19px; color: #777">php</a> <a href="/tags/python/" style="font-size: 19px; color: #777">python</a> <a href="/tags/sqli/" style="font-size: 14px; color: #999">sqli</a> <a href="/tags/web/" style="font-size: 24px; color: #555">web</a> <a href="/tags/webshell/" style="font-size: 14px; color: #999">webshell</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 19px; color: #777">信息收集</a> <a href="/tags/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/" style="font-size: 19px; color: #777">内部红蓝</a> <a href="/tags/%E5%9F%9F%E5%90%8D/" style="font-size: 14px; color: #999">域名</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/" style="font-size: 19px; color: #777">工具指南</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">机器学习</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 19px; color: #777">权限维持</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 19px; color: #777">爬虫</a> <a href="/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/" style="font-size: 14px; color: #999">红蓝对抗</a> <a href="/tags/%E9%92%93%E9%B1%BC/" style="font-size: 14px; color: #999">钓鱼</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
 
 </aside>
-
 
 
         
@@ -709,8 +666,8 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="通过NS服务器收集域名";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

